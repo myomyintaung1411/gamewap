@@ -1,0 +1,32 @@
+.tm_model {
+   background:@bg-deep01;
+  //.bg-shallow01(.98);
+  box-shadow:
+    16px 16px 80px rgba(255, 255, 255, 0.07)
+  ;
+  width:260px;
+  .flex(flex, center); flex-direction:column;
+  .box-sizing(); padding:20px 40px;
+  border:1px solid; .border-color-white(.2);
+  border-radius:6px;
+  position:fixed; top:50vh; left:calc((100% - 260px) / 2);
+  z-index:2100;
+  opacity:0;
+  transform:scale(.9);
+  pointer-events:none;
+  animation:_show .15s;
+  animation-fill-mode:forwards;
+}
+  .tm_model._show {
+    pointer-events:all;
+  }
+  .tm_content {
+    width:100%; font-size:@font-18; font-weight:@font-bold; .color-gradient01(); text-align:center; letter-spacing:1.4px;
+  }
+
+@keyframes _show {
+  to {
+    opacity:1;
+    transform:scale(1);
+  }
+}

@@ -1,0 +1,123 @@
+.body-style {
+  height: 100vh;
+  background-color: #fff;
+  overflow: auto; /* 使用自动滚动条 */
+}
+
+.tf_top {
+  background:#FFFFFF;
+  width:100%;
+  position:sticky; top:calc(80rpx + var(--status-bar-height));
+}
+
+/* .back-icon {
+  margin-top: 16rpx;
+  margin-left: 14rpx;
+} */
+
+.timeData-style{
+  display: flex;
+  padding: 20rpx 0;
+
+  .wrap-style {
+      margin: 0 auto;
+  }
+}
+
+.button-style {
+  width: 100rpx;
+  height: 50rpx;
+  font-size: 20rpx;
+  margin: 0 10rpx;
+  text-align: center;
+  background: #003852;
+  color: #fff;
+}
+
+.load-style {
+  font-size: 25rpx;
+}
+
+.listData-style {
+  // background: red;
+  background: #fff;
+  border: 4rpx solid @border-color-blue-deep;
+  padding: 10rpx 10rpx;
+  margin: 10rpx 10rpx;
+  border-radius: 20rpx;
+}
+
+.row-style {
+  display: flex;
+
+  .list-style {
+    width: 50%;
+    background: #fff;
+    color: #000000;
+  }
+  .list-style-hundred {
+    width: 100%;
+    background: #fff;
+    color: #000000;
+  }
+}
+
+/* .top-style {
+  background: linear-gradient(to right, #693409,#a98a67);
+  height: 80rpx;
+  display: flex;
+  // padding-top: 10rpx;
+
+  .title-password {
+    width: 100%;
+    text-align: center;
+    line-height: 80rpx;
+    margin-right: 55rpx;
+  }
+} */
+
+.dateTime-style {
+  display: flex;
+
+  .date-style {
+    width: 94%;
+    margin-left: 3%;
+    height: 70rpx;
+    margin-top: 20rpx;
+    // line-height: 70rpx;
+    font-size: 25rpx;
+    color: #000000;
+
+    .picker {
+      display: flex;
+
+      .picker-style {
+        padding: 10rpx 0;
+      }
+
+      .select-style {
+        border: 4rpx solid @border-color-blue-deep;
+        width: 180rpx;
+        text-align: center;
+        border-radius: 10rpx;
+        padding: 10rpx 10rpx;
+        margin-left: 10rpx;
+      }
+
+      .select-value {
+        color: #000000;
+        // padding: 10rpx 10rpx;
+        width: 120rpx;
+        height: 45rpx;
+        margin: 6rpx 0 0 10rpx;
+        line-height: 45rpx;
+        border-radius: 10rpx;
+        border: 1px solid @border-color-blue-deep;
+
+        .select-value-text {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

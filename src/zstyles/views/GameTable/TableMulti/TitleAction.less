@@ -1,0 +1,58 @@
+.ta_model {
+  // background:rgba(0, 0, 0, .6);
+  width:100%;
+  .flex(flex);
+  .box-sizing(); padding:16rpx 40rpx 16rpx 24rpx;
+  // position:absolute; top:0; left:0;
+}
+
+.ta_view {
+  margin:0 20rpx 0 0;
+  .flex(inline-flex); flex-shrink:0;
+}
+  .ta_vi_icon {
+    width:50rpx; height:50rpx;
+  }
+  .ta_vi_name {
+    font-size:@font-14; /* color:@color-theme; */
+    padding:6rpx 0 0 6rpx;
+    // opacity:.6;
+  }
+
+.ta_action {
+  .flex(inline-flex, space-between); flex:1;
+}
+  .ta_ac_left {
+    width:50%;
+    .flex(inline-flex);
+  }
+    .ta_ac_le_view {
+      margin:4rpx 10rpx 0 0;
+
+      &:last-child {
+        margin-right:0;
+      }
+    }
+      .ta_ac_le_vi_icon {
+        width:40rpx; height:40rpx;
+      }
+      .ta_ac_le_vi_name {
+        font-size:@font-14; /* color:@color-theme; */
+      }
+  .ta_ac_right {
+    width:50%;
+    .flex(inline-flex, flex-end);
+  }
+    .ta_ac_ri_view {
+      margin:0 30rpx 0 0;
+
+      &:last-child {
+        margin-right:0;
+      }
+    }
+      .ta_ac_ri_vi_icon {
+        width:40rpx; height:40rpx;
+      }
+      .ta_ac_ri_vi_name {
+        font-size:@font-12; color:@color-theme;
+      }

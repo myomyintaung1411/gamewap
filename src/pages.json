@@ -1,0 +1,77 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "views/Login/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/HotUpdate/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/Lobby/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/GameTable/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/GameTable/TableNormal/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/GameTable/TableMulti/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/SideContent/OnlineService",
+			"style": {
+				// "navigationBarTitleText": "在线客服",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/SideContent/ChangePassword",
+			"style": {
+				// "navigationBarTitleText": "修改密码",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/SideContent/pledgeCode",
+			"style": {
+				// "navigationBarTitleText": "押码记录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "views/SideContent/TransactionFlow",
+			"style": {
+				// "navigationBarTitleText": "交易流水",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "百信在线",
+		"navigationBarBackgroundColor": "#000000",
+		"backgroundColor": "#F8F8F8",
+		"rpxCalcBaseDeviceWidth": 3840,
+		"rpxCalcMaxDeviceWidth": 3840,
+		"rpxCalcIncludeWidth": 750
+	}
+}

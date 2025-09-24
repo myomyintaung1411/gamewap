@@ -1,0 +1,78 @@
+.gl_mask {
+  // .bg-mask(.4);
+  width:100%; height:100vh;
+  position:fixed; top:0; right:0;
+  z-index:200;
+}
+
+.gl_model {
+  .bg-mask(.98);
+  width:76%; height:100vh;
+  overflow-y:scroll;
+  .hidescroll();
+  position:fixed; top:0; right:0;
+  z-index:210;
+  transform:translateX(100%);
+  animation:_modelShow .2s forwards ease-in-out;
+  background: linear-gradient(to right, #1c1a20, 60%, #60636b);
+}
+  @keyframes _modelShow
+    {
+      from { transform:translateX(100%); }
+      to { transform:translateX(0); }
+    }
+  /* @-webkit-keyframes _modelShow
+    {
+      from { transform:translateX(100%); }
+      to { transform:translateX(0); }
+    } */
+
+.gl_ph {
+  width:100%; height:var(--status-bar-height);
+}
+
+.gl_card {
+  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-view.png'));
+  width:calc(100% - 30rpx); margin:0 0 6rpx 20rpx;
+  .box-sizing(); padding:6rpx 16rpx 16rpx 16rpx;
+  position:relative;
+}
+  .gl_ca_title {
+    widith:100%; margin:0 0 6rpx 0;
+    .flex(flex, space-between, flex-end);
+  }
+    .gl_ca_ti_name {
+      font-size:26rpx;
+      .flex(inline-flex);
+    }
+      .gl_ca_ti_na_text {
+      }
+      .gl_ca_ti_na_prompt {
+        color:@color-red;
+        padding:0 0 0 10rpx;
+      }
+    .gl_ca_ti_time {
+      // width:80px;
+      .flex(inline-flex, center, center);
+    }
+      .gl_ca_ti_ti_icon {
+        margin:0 8rpx 0 0;
+      }
+      .gl_ca_ti_ti_ic_num {
+        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        .flex(inline-flex, false, center);
+        .overflow();
+      }
+      .gl_ca_ti_ti_ic_text {
+        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        .flex(inline-flex, false, center);
+        .overflow();
+      }
+  .gl_ca_dew {
+    width:100%; height:calc(12px * 6);
+  }
+  .gl_ca_goodTitle {
+    font-size:@font-12; font-weight:@font-bold; color:@color-theme;
+    .box-sizing(); padding:2px 8px;
+    position:absolute; bottom:10rpx; right:20rpx;
+  }

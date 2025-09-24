@@ -1,0 +1,26 @@
+.vc_commission {
+  margin:0 10rpx 0 0;
+  .flex(flex);
+  position:absolute; top:370rpx; left:20rpx;
+}
+  .vc_co_name {
+    font-size:@font-12; margin:4rpx 10rpx 0 0;
+    opacity:.4;
+  }
+  .vc_co_content {
+    width:74rpx; height:30rpx;
+
+    :deep(.uni-switch-wrapper) {
+      width:100%; height:100%; margin-top:-10rpx;
+      .uni-switch-input {
+        width:100%; height:100%;
+
+        &:before {
+          width:100%; height:100%;
+        }
+        &:after {
+          width:28rpx; height:28rpx;
+        }
+      }
+    }
+  }

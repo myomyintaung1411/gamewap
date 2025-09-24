@@ -1,0 +1,84 @@
+uni-page-body {
+  height:100%;
+}
+
+.page-box {
+  height:100%;
+}
+
+.popup-container {
+  height:0;
+}
+
+.gt_box {
+  background:@bg-gameTable;
+  width:100%; height:100%;
+  .flex(flex, center, center);
+  overflow-x:hidden;
+}
+
+.gt_back {
+  position:fixed; top:calc(var(--status-bar-height) + 20rpx); left:20rpx;
+  z-index:10;
+  &:after {
+    content:'';
+    position:absolute; top:-4rpx; right:-8rpx; bottom:-0rpx; left:-8rpx;
+    z-index:10;
+  }
+}
+
+.gt_more {
+  position:fixed; top:calc(var(--status-bar-height) + 20rpx); right:36rpx;
+  z-index:10;
+  &:after {
+    content:'';
+    // background:rgba(0, 0, 0, .4);
+    position:absolute; top:-10rpx; right:-12rpx; bottom:-6rpx; left:-12rpx;
+    z-index:10;
+  }
+}
+
+.gt_voice {
+  position:fixed; top:calc(var(--status-bar-height) + 90rpx); right:34rpx;
+  z-index:10;
+  &:after {
+    content:'';
+    // background:rgba(0, 0, 0, .4);
+    position:absolute; top:-12rpx; right:-12rpx; bottom:-4rpx; left:-12rpx;
+    z-index:10;
+  }
+}
+
+.gt_flex {
+  width:100%; height:100%;
+  .flex(inline-flex); flex-direction:column;
+}
+
+.gt_video {
+  width:100%; height:400rpx;
+  flex-shrink:0;
+}
+.gt_flex1 {
+  // background:gray;
+  width:100%;
+  flex:1; .flex(inline-flex, space-around); flex-direction:column;
+}
+  .gt_briefInfo {
+    width:100%;
+  }
+  .gt_bettingArea {
+    // background:rgba(0, 0, 0, .4);
+    width:100%; max-height:360rpx;
+    flex:1;
+  }
+  .gt_chipsArea {
+    // background:rgba(0, 0, 0, .2);
+    width:100%;
+    flex:1; .flex(inline-flex, center); flex-direction:column;
+  }
+.gt_roundInfo {
+  width:100%;
+}
+.gt_dew {
+  width:100%;
+}

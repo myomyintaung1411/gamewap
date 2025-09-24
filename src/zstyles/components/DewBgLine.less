@@ -1,0 +1,16 @@
+.db_background {
+  background-image:
+    linear-gradient(to right, @bg-dew-line 1rpx, transparent 1rpx),
+    linear-gradient(to bottom, @bg-dew-line 1rpx, transparent 1rpx)
+  ;
+  min-width:100%; height:100%;
+  display:grid;
+  gap:0;
+  grid-auto-flow:column;
+  position:absolute; top:0; left:0;
+}
+
+.db_view {
+  .box-sizing();
+  /* border-width:0 1rpx 1rpx 0; border-style:solid; border-color:@bg-dew-line; */
+}

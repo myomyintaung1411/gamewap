@@ -1,0 +1,200 @@
+.pi_model {
+  width:100%; height:100%;
+  .flex(flex, center); flex-direction:column;
+  .box-sizing(); padding:6rpx 6rpx;
+  position:absolute; top:0; left:0;
+  transform:translateX(100%);
+  animation:_modelShow .4s forwards ease-in-out;
+}
+  @keyframes _modelShow
+    {
+      from { transform:translateX(100%); }
+      to { transform:translateX(0); }
+    }
+  /* @-webkit-keyframes _modelShow
+    {
+      from { transform:translateX(100%); }
+      to { transform:translateX(0); }
+    } */
+
+.pi_bg01 {
+  width:50%; height:100%;
+  position:absolute; top:0; left:0;
+
+  &._type_bjl {
+    background:@bg-blue-shallow;
+    .pi_an_mask {
+      background:@bg-blue-shallow;
+    }
+  }
+  &._type_lh {
+    background:@bg-red03;
+    .pi_an_mask {
+      background:@bg-red03;
+    }
+  }
+}
+
+.pi_bg02 {
+  width:50%; height:100%;
+  position:absolute; top:0; right:0;
+
+  &._type_bjl {
+    background:@bg-red03;
+    .pi_an_mask {
+      background:@bg-red03;
+    }
+  }
+  &._type_lh {
+    background:@bg-blue-shallow;
+    .pi_an_mask {
+      background:@bg-blue-shallow;
+    }
+  }
+}
+
+.pi_animation {
+  width:100%; height:100%;
+  .box-sizing(); padding:6rpx 6rpx;
+  .overflow();
+  position:relative;
+
+  &._xian {
+    .pi_ti_view {
+      // background:@bg-blue-shallow;
+      .flex(inline-flex, flex-end, center);
+
+      .pi_ti_vi_num {
+        text-align:right;
+      }
+    }
+  }
+  &._zhuang {
+    .pi_ti_view {
+      // background:@bg-red03;
+      .flex(inline-flex, false, center);
+    }
+  }
+}
+  .pi_an_mask {
+    background:gray;
+    width:calc(100% - 12rpx); height:calc(100% - 12rpx);
+    position:absolute; left:6rpx; top:6rpx;
+    z-index:20;
+  }
+  .pi_an_trans {
+    background-image: conic-gradient( from 45deg, transparent 0deg 90deg, #FFFFFF 90deg 180deg, transparent 180deg 270deg, #FFFFFF 270deg 360deg);
+    width:calc(740rpx * 2); height:calc(740rpx * 2); margin:calc(-370rpx * 2) 0 0 calc(-370rpx * 2);
+    position:absolute; left:50%; top:50%;
+    animation:.8s infinite linear rotate;
+    z-index:-1;
+  }
+    @keyframes rotate {
+      from { transform:rotate(0deg); }
+      to { transform:rotate(360deg); }
+    }
+
+.pi_title {
+  width:100%; margin:0 0 0 0;
+  .flex(flex);
+}
+  .pi_ti_animation {
+    width:50%;
+    .box-sizing(); padding:6rpx 6rpx;
+    .overflow();
+    position:relative;
+
+    &._xian {
+      .pi_ti_view {
+        // background:@bg-blue-shallow;
+        .flex(inline-flex, flex-end, center);
+
+        .pi_ti_vi_num {
+          text-align:right;
+        }
+      }
+    }
+    &._zhuang {
+      .pi_ti_view {
+        // background:@bg-red03;
+        .flex(inline-flex, false, center);
+      }
+    }
+  }
+    /* .pi_ti_an_trans {
+      background-image: conic-gradient( from 45deg, transparent 0deg 90deg, #FFFFFF 90deg 180deg, transparent 180deg 270deg, #FFFFFF 270deg 360deg);
+      width:740rpx; height:740rpx; margin:-370rpx 0 0 -370rpx;
+      position:absolute; left:50%; top:50%;
+      animation:.8s infinite linear rotate;
+    }
+      @keyframes rotate {
+        from { transform:rotate(0deg); }
+        to { transform:rotate(360deg); }
+      } */
+  .pi_ti_view {
+    width:100%;
+    .box-sizing(); padding:8rpx 16rpx;
+    position:relative;
+    z-index:10;
+  }
+    .pi_ti_vi_info {
+      .flex(inline-flex, center, center); flex-direction:column;
+    }
+      .pi_ti_vi_in_zh {
+        font-size:40rpx;
+      }
+    .pi_ti_vi_num {
+      width:60rpx; font-size:36rpx; font-weight:@font-bold;
+      flex-shrink:0;
+    }
+
+.pi_first {
+  width:100%; margin:0 0 8rpx 0;
+  .flex(flex);
+  position:relative;
+  z-index:10;
+}
+  .pi_fi_view {
+    width:50%;
+    .box-sizing(); padding:0rpx 14rpx;
+
+    &:nth-child(1) {
+      .flex(inline-flex, flex-end, center);
+    }
+    &:nth-child(2) {
+      .flex(inline-flex, false, center);
+    }
+  }
+    .pi_fi_vi_card {
+      width:90rpx; height:118rpx; margin:0 4rpx;
+
+      &._bupai {
+        width:72rpx; height:110rpx; margin:0rpx 16rpx;
+        padding-left:26rpx;
+        transform:translate(0, 0) rotate(90deg);
+        position:relative;
+      }
+    }
+
+.pi_second {
+  width:100%;
+  .flex(flex);
+}
+  .pi_se_view {
+    width:50%;
+    .box-sizing(); padding:0rpx 0rpx;
+
+    &._xian {
+      .flex(inline-flex, false, center);
+      padding-left:40rpx;
+    }
+    &._zhuang {
+      .flex(inline-flex, flex-end, center);
+      padding-right:40rpx;
+    }
+  }
+    .pi_se_vi_card {
+      width:92rpx; height:120rpx; margin:0 6rpx;
+      transform:translate(0, 0) rotate(90deg);
+      position:relative;
+    }

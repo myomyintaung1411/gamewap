@@ -1,0 +1,135 @@
+.body-style {
+  height: 100vh;
+  background-color: #fff;
+  overflow: auto; /* 使用自动滚动条 */
+}
+
+.pc_top {
+  background:#FFFFFF;
+  width:100%;
+  position:sticky; top:calc(80rpx + var(--status-bar-height));
+}
+
+/* .back-icon {
+  margin-left: 14rpx;
+  margin-top: 16rpx;
+} */
+
+.timeData-style {
+  display: flex;
+  padding: 20rpx 0;
+  .wrap-style{
+    margin: 0 auto;
+  }
+}
+
+.button-style {
+  width: 100rpx;
+  height: 50rpx;
+  font-size: 20rpx;
+  margin: 0 10rpx;
+  text-align: center;
+  background: #003852;
+  color: #fff;
+}
+
+.load-style {
+  font-size: 25rpx;
+  margin-bottom: 120rpx;
+}
+
+.bottom-total-style {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70rpx;
+  width: 100%;
+  line-height: 70rpx;
+  background:linear-gradient(to right, #003852, #0d2b4a);
+
+  .bottom-total-right {
+    float: right;
+    font-size: 30rpx;
+    margin-right: 30rpx;
+  }
+  .bottom-total-left {
+    float: left;
+    font-size: 30rpx;
+    margin-left: 10rpx;
+  }
+}
+
+.listData-style {
+  // background: red;
+  background: #fff;
+  border: 4rpx solid @border-color-blue-deep;
+  padding: 10rpx 10rpx;
+  margin: 10rpx 10rpx;
+  border-radius: 20rpx;
+
+  .row-style {
+    display: flex;
+
+    .list-style {
+      width: 50%;
+      background: #fff;
+      color: #000000;
+    }
+    .list-style-row {
+      width: 100%;
+      background: #fff;
+      color: #000000;
+    }
+    .list-style-hundred {
+      width: 100%;
+      background: #fff;
+      color: #000000;
+    }
+  }
+}
+
+/* .top-style {
+  background: linear-gradient(to right, #693409,#a98a67);
+  height: 80rpx;
+  display: flex;
+  //  padding-top: 10rpx;
+} */
+
+/* .title-password {
+  width: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  margin-right: 55rpx;
+} */
+
+.dateTime-style {
+  display: flex;
+
+  .date-style {
+    width: 94%;
+    margin-left: 3%;
+    height: 70rpx;
+    margin-top: 20rpx;
+    // line-height: 70rpx;
+    font-size: 25rpx;
+    color: #000000;
+
+    .picker {
+      display: flex;
+
+      .picker-style {
+        padding: 10rpx 0;
+      }
+
+      .select-style {
+        border: 4rpx solid @border-color-blue-deep;
+        width: 180rpx;
+        text-align: center;
+        border-radius: 10rpx;
+        padding: 10rpx 10rpx;
+        margin-left: 10rpx;
+      }
+    }
+  }
+}

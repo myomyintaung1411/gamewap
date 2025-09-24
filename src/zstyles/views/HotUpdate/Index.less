@@ -1,0 +1,78 @@
+.hu_page {
+  background:linear-gradient(to bottom, #2b5a45, #235371);
+  width:100%;
+}
+
+.hu_flex {
+  width:100%; height:100%;
+  .flex(flex, center); flex-direction:column;
+}
+
+.hu_title {
+  width:100%; font-size:@font-30; .color-gradient07(); text-align:center; margin:0 0 120rpx 0;
+}
+
+.hu_subtitle {
+  width:100%; font-size:@font-16; .color-gradient07(); margin:0 0 10rpx 0;
+  .box-sizing(); padding:0 40rpx;
+}
+
+.hu_list {
+  width:100%; margin:0 0 100rpx 0;
+  overflow-y:scroll;
+}
+  .hu_li_line {
+    width:100%; margin:0 0 10rpx 0;
+    .flex(flex);
+    .box-sizing(); padding:0 50rpx;
+  }
+    .hu_li_li_num {
+      min-width:80rpx; font-size:@font-14; .color-gradient07(); text-align:right; line-height:1.8;
+      font-family:"Courier New", Courier, monospace;
+      .box-sizing(); padding:0 10rpx 0 0;
+    }
+    .hu_li_li_value {
+      font-size:@font-16; .color-gradient07();
+    }
+
+.hu_process {
+  width:80%; margin:0 auto 100rpx auto;
+
+  :deep(.uni-progress-bar) {
+    border-radius:30rpx;
+    .uni-progress-inner-bar {
+      background:@bg-gradient01;
+      border-radius:30rpx;
+    }
+  }
+  :deep(.uni-progress-info) {
+    .color-gradient07();
+  }
+}
+  .hu_pr_status {
+    font-size:@font-14; .color-gradient07();
+  }
+
+.hu_button {
+  width:100%;
+  .flex(flex, center);
+}
+  .hu_bu_view {
+    width:30%; height:70rpx; font-size:@font-14; color:@color-normal;
+    .flex(inline-flex, center, center);
+    border-radius:60rpx;
+
+    &._theme01 {
+      background:gray;
+    }
+    &._theme02 {
+      background:@bg-gradient01;
+    }
+
+    &._disable {
+      opacity:.4;
+    }
+  }
+    .hu_bu_vi_hover {
+      opacity:.7;
+    }

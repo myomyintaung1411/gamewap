@@ -1,0 +1,29 @@
+.vp_model {
+  width:100%;
+  .flex(flex, center);
+  justify-content: space-between;
+  position:absolute; bottom:10rpx; left:0;
+  pointer-events:none;
+}
+
+.vp_view {
+  .flex(inline-flex, false, center);
+  .box-sizing(); padding:0 10rpx;
+
+  &._size01 {
+    max-width:40%;
+  }
+  &._size02 {
+    max-width:60%;
+  }
+}
+  .vp_vi_icon {
+    width:24rpx; height:24rpx; margin:0 4rpx 0 0;
+    flex-shrink:0;
+    opacity:.4;
+  }
+  .vp_vi_value {
+    font-size:@font-12;
+    .multi-line(1);
+    opacity:.4;
+  }

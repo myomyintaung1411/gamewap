@@ -1,0 +1,225 @@
+.single-line() {
+  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
+}
+
+.multi-line(@line:2) {
+  display:-webkit-box;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  word-wrap:break-word;
+  white-space:normal;
+  -webkit-line-clamp:@line;
+  -webkit-box-orient:vertical;
+}
+
+.animation-bling() {
+  animation:ani-bling 1s infinite;
+}
+
+.ani-normal(@target) {
+  transition:@target .2s ease-in-out;
+}
+
+.hidescroll() {
+  &::-webkit-scrollbar {
+    display:none;
+    position:fixed; right:0; top:0;
+  }
+  &::-moz-scrollbar {
+    display:none;
+    position:fixed; right:0; top:0;
+  }
+  &::-ms-scrollbar {
+    display:none;
+    position:fixed; right:0; top:0;
+  }
+}
+
+.overflow() {
+  overflow:hidden;
+  -webkit-backface-visibility:hidden;
+  -webkit-transform:translate3d(0, 0, 0);
+}
+
+.flex(@flex:flex, @justify-content:flex-start, @align-items:flex-start) {
+  display:@flex; justify-content:@justify-content; align-items:@align-items;
+}
+
+.box-sizing() {
+  box-sizing:border-box;
+}
+
+.pointer() {
+  cursor:pointer;
+}
+
+.pointe-disable() {
+  cursor:not-allowed;
+}
+
+.unselectable() {
+  -webkit-user-select:none; /* Safari */
+  -moz-user-select:none; /* Firefox */
+  -ms-user-select:none; /* Internet Explorer/Edge */
+  user-select:none; /* 标准语法 */
+}
+
+.bg-img(@url) {
+  background-image:@url; background-repeat:no-repeat; background-size:100% 100%;
+}
+
+@bg-body:#000000;
+@bg-page:/* #091720 */#000000;
+@bg-gameTable:#214b3d;
+@bg-white:#FFFFFF;
+.bg-mask(@opacity) {
+  background:rgba(0, 0, 0, @opacity);
+}
+@bg-deep01:#252733;
+@bg-shallow01:#333333;
+.bg-shallow01(@opacity) {
+  background:rgba(192, 192, 192, @opacity);
+}
+@bg-deep02:#1f1919;
+.bg-deep02(@opacity) {
+  background:rgba(31, 25, 25, @opacity);
+}
+@bg-deep03:#333333;
+@bg-deep04:#890300;
+@bg-gradient01:linear-gradient(to bottom, #890300, #680a0b); // 渐变-红色-暗
+@bg-gradient02:linear-gradient(to bottom, #f60000, #840809); // 渐变-红色-亮
+@bg-gradient03:linear-gradient(to bottom, #fadb74, #c68946); // 渐变-黄色
+@bg-gradient04:linear-gradient(to bottom, #053708, #005522); // 渐变-绿色
+@bg-gradient05:linear-gradient(6deg, #2d2e2e, 40%, #000303); // 灰色-黑色
+@bg-gradient06:linear-gradient(to bottom, #fdfdfd, #a8acaf); // 渐变-灰色
+@bg-gradient07:linear-gradient(to bottom, #9f8157, #faf4d5); // 渐变-黄色-深-浅
+@bg-gradient08:linear-gradient(to right, #1c1a20, 60%, #60636b); // 渐变-黑色-左-右
+@bg-gradient09:linear-gradient(to right, #e0b559, #e6e272, #e0b559); // 渐变-黄色-深-浅-深
+@bg-gradient10:linear-gradient(to bottom, #2d2e2e, 20%, #000303); // 渐变-黑色-上-下
+@bg-gradient11:linear-gradient(to right, #e0b559, #e6e272, #e0b559); // 渐变-黄色-深-浅-深
+@bg-gradient12:linear-gradient(to bottom, #801b1d, #410a0b); // 渐变-红色-浅-深(游戏桌台按钮)
+@bg-gradient13:linear-gradient(-30deg, #b88b38, 10%, #fdf397, #b88b38); // 渐变-黄色-深-浅-深(游戏桌台按钮)
+@bg-gradient14:linear-gradient(to right, #e0b559, 20%, #e6e272, 80%, #e0b559); // 渐变-黄色-深-浅-深(游戏桌台确认按钮)
+@bg-red01:rgba(94, 16, 13, 1);
+@bg-blue-shallow:rgba(17, 103, 231, 1);
+.bg-blue-shallow(@opacity) {
+  color:rgba(17, 103, 231, @opacity);
+}
+@bg-blue-deep:rgba(25, 46, 86, 1);
+.bg-green(@opacity) {
+  background:rgba(0, 255, 0, @opacity);
+}
+@bg-green-deep:#2f372c;
+.bg-red02(@opacity) {
+  background:rgba(255, 0, 0, @opacity);
+}
+@bg-red03:rgba(205, 43, 22, 1);
+@bg-dew-line:rgba(0, 0, 0, .4);
+
+@box-shadow-green:rgba(0, 255, 0, 1) 1px 1px 12px;
+@box-shadow-red:rgba(255, 0, 0, 1) 1px 1px 12px;
+
+@color-normal:#FFFFFF;
+@color-theme:#ddcd94;
+@color-theme-shallow:#FCEAD9;
+@color-wineRed:#801b1d;
+@color-deep:#f3f3f3;
+@color-deep02:#462f06; // 棕色
+.color-deep03(@opacity) {
+  color:rgba(0, 0, 0, @opacity);
+}
+@color-green:#0dea13;
+@color-green-deep:#67995d;
+@color-red:#dc0010;
+.color-red(@opacity) {
+  color:rgba(220, 0, 16, @opacity);
+}
+@color-shallow01:#98a1bf;
+@color-shallow02:#eef0f4;
+@color-blue:#5d8eba;
+@color-red02:#7f4646;
+@color-green02:#2f9062;
+
+.color-gradient01() { // 渐变-黄
+  background:linear-gradient(to bottom, #dac86c, #d5934b);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.color-gradient02() { // 渐变-红
+  background:linear-gradient(to bottom, #890300, #680a0b);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.color-gradient03() { // 渐变-黄-浅
+  background:linear-gradient(to bottom, #edd774, #fefcaa);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.color-gradient04() { // 渐变-黄-深-浅-神
+  background:linear-gradient(to right, #7e5319, #eee28b, #8b5c1a);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.color-gradient05() { // 渐变-黄-浅-深
+  background:linear-gradient(to bottom, #eadc77, #9d7040);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.color-mask(@opacity) {
+  color:rgba(0, 0, 0, @opacity);
+}
+.color-gradient06() { // 渐变-黄-浅-深
+  background:linear-gradient(to bottom, #eadc77, #e39b3d);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.color-gradient07() { // 渐变-黄-浅-白 (to right)
+  background:linear-gradient(to right, #c5b390, #f8f7ee);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.color-gradient08() { // 渐变-黄-深-浅 (to right)
+  background:linear-gradient(to right, #b07c5a, #d1ad86);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+@color-bet-blue:#53b8e2;
+@color-bet-red:#e9937a;
+@color-bet-green:#a9d393;
+
+.border-color-deep(@opacity) {
+  border-color:rgba(0, 0, 0, @opacity);
+}
+.border-color-white(@opacity) {
+  border-color:rgba(255, 255, 255, @opacity);
+}
+.border-color-green(@opacity) {
+  border-color:rgba(0, 255, 0, @opacity);
+}
+@border-color-theme:#ddcd94;
+@border-color-red-shallow:#c8746c;
+@border-color-blue-shallow:#7aa383;
+@border-color-blue-deep:#0e2036;
+/* .border-color-gradient01() { // 渐变-黄-深-浅-深
+  border-image:linear-gradient(to right, #7e5319, #eee28b, #8b5c1a) 1;
+} */
+.border-color-red(@opacity) {
+  color:rgba(220, 0, 16, @opacity);
+}
+
+@font-46:46px;
+@font-36:36px;
+@font-32:32px;
+@font-30:30px;
+@font-26:26px;
+@font-24:24px;
+@font-22:22px;
+@font-20:20px;
+@font-18:18px;
+@font-16:16px;
+@font-14:14px;
+@font-12:12px;
+@font-10:10px;
+@font-8:8px;
+
+@font-bold:bold;

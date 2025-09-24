@@ -1,0 +1,61 @@
+.sdt_model {
+  background:#0e2036;
+  margin:0 auto 20rpx auto;
+  .flex(inline-flex, center); flex-shrink:0;
+  position:relative;
+}
+
+.sdt_switch {
+  .flex(flex);
+
+  &:before {
+    content:'';
+    background:#0e2036;
+    width:200rpx; height:58rpx;
+    position:absolute; top:0rpx; right:-52rpx;
+    clip-path:path('M 32,0 C 18,0 18,32 0,32 L 32,32 Z');
+    transform:rotate(-180deg);
+  }
+
+  &:after {
+    content:'';
+    background:#0e2036;
+    width:200rpx; height:58rpx;
+    position:absolute; top:0; left:-190rpx;
+    clip-path:path('M 0,0 C 18,0 18,32 32,32 L 0, 32 Z');
+    transform:rotate(-180deg);
+  }
+}
+  .sdt_sw_view {
+    width:160rpx;
+    .box-sizing(); padding:10rpx 20rpx;
+    .flex(flex, center, center); flex-direction:column;
+    .pointer();
+    position:relative;
+    z-index:20;
+
+    &:nth-child(1) {
+    }
+    &:nth-child(2) {
+      margin-bottom:0;
+    }
+
+    &._bright {
+      .sdt_sw_vi_name {
+        color:@color-normal;
+      }
+    }
+  }
+    .sdt_sw_vi_name {
+      font-size:@font-14; color:@color-theme;
+      position:relative;
+      z-index:10;
+    }
+  .sdt_sw_bright {
+    .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/desk-type-switch-bright.png'));
+    width:calc(160rpx + 100rpx); height:58rpx;
+    position:absolute; top:0; left:0;
+    transform:rotate(180deg);
+    .ani-normal(left);
+    z-index:10;
+  }

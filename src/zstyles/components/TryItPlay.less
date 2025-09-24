@@ -1,0 +1,100 @@
+.tip_mask {
+  /* .bg-mask(.6); */
+  width:100%; height:100vh;
+  position:fixed; top:0; right:0;
+  z-index:200;
+}
+
+.tip_model {
+  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-withdraw-apply.png'));
+  width:80%;
+  position:fixed; top:calc((100% - 300rpx) / 2); left:10%;
+  z-index:210;
+  // transform:translateX(100%);
+  // animation:_modelShow .2s forwards ease-in-out;
+}
+  /* @keyframes _modelShow
+    {
+      from { transform:translateX(100%); }
+      to { transform:translateX(0); }
+    } */
+
+.tip_close {
+  width:50rpx; height:50rpx;
+  position:absolute; top:20rpx; right:20rpx;
+}
+
+.tip_ph {
+  width:100%; height:40rpx;
+}
+
+.tip_title {
+  width:100%; margin:0 0 40rpx 0;
+  .flex(flex, center);
+}
+  .tip_ti_text {
+    font-size:@font-20;
+  }
+
+.tip_form {
+  width:100%; margin:0 0 20rpx 0;
+  .flex(flex); flex-wrap:wrap;
+  .box-sizing(); padding:20rpx 0 0 0;
+}
+  .tip_fo_item {
+    background:white;
+    width:calc(100% - 60rpx); margin:0 auto 6px auto;
+    .flex(inline-flex);
+    border-radius:6rpx;
+    &._flexwrap {
+      flex-wrap:wrap;
+    }
+  }
+    .tip_fo_it_name {
+      width:90px; color:@color-deep; margin:9px 10px 0 0; .color-deep03(1); text-align:right;
+    }
+    .tip_fo_it_content {
+      width:calc(100% - 90px - 10px); height:40px; .color-deep03(1);
+    }
+      .tip_fo_it_co_input {
+        height:100%;
+        .box-sizing(); padding:0 20rpx;
+      }
+    .tip_fo_it_img {
+      width:110px; height:36px; margin:2px 0 0 0;
+      .pointer();
+    }
+      .tip_fo_it_suffix {
+        height:40px;
+        .flex(inline-flex, center, center);
+        padding:0 6px;
+        position:relative;
+        .pointer();
+
+        &._loading {
+          .tip_fo_it_su_fill {
+            animation:1s infinite linear _rotate;
+          }
+        }
+      }
+        .tip_fo_it_su_fill {
+        }
+        @keyframes _rotate {
+          from { transform:rotate(0deg); }
+          to { transform:rotate(360deg); }
+        }
+  .tip_fo_action {
+    width:100%; margin:10px 0 0 0;
+    .flex(inline-flex, center);
+  }
+    .tip_fo_ac_button {
+      background:@bg-gradient01;
+      margin:0 40rpx;
+      .box-sizing(); padding:12rpx 40rpx;
+      border-color:@border-color-red-shallow;
+      border-radius:40rpx;
+
+      &:hover {
+        background:@bg-gradient01;
+      }
+    }

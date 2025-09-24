@@ -1,0 +1,96 @@
+.sd_mask {
+  // .bg-mask(.4);
+  width:100%; height:100vh;
+  position:fixed; top:0; right:0;
+  z-index:200;
+}
+
+.sd_model {
+  .bg-mask(.98);
+  width:76%; /* height:100vh; */
+  overflow-y:scroll;
+  .hidescroll();
+  position:fixed; top:0; right:0;
+  z-index:210;
+  transform:translateX(100%);
+  animation:_modelShow .2s forwards ease-in-out;
+  background: linear-gradient(to right, #1c1a20, 60%, #60636b);
+}
+  @keyframes _modelShow
+    {
+      from { transform:translateX(100%); }
+      to { transform:translateX(0); }
+    }
+  /* @-webkit-keyframes _modelShow
+    {
+      from { transform:translateX(100%); }
+      to { transform:translateX(0); }
+    } */
+
+.sd_ph01 {
+  width:100%; height:var(--status-bar-height);
+}
+
+.sd_card {
+  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-view.png'));
+  width:calc(100% - 30rpx); margin:0 0 6rpx 20rpx;
+  .box-sizing(); padding:6rpx 16rpx 16rpx 16rpx;
+}
+  .sd_ca_title {
+    widith:100%; margin:0 0 6rpx 0;
+    .flex(flex, space-between, flex-end);
+  }
+    .sd_ca_ti_name {
+      font-size:26rpx;
+      .flex(inline-flex);
+    }
+      .sd_ca_ti_na_text {
+        margin:0 20rpx 0 0;
+      }
+      .sd_ca_ti_na_round {
+        font-size:@font-12; margin:2rpx 0 0 0;
+        opacity:.6;
+      }
+      .sd_ca_ti_na_prompt {
+        color:@color-red;
+        padding:0 0 0 10rpx;
+      }
+    .sd_ca_ti_time {
+      // width:80px;
+      .flex(inline-flex, center, center);
+    }
+      .sd_ca_ti_ti_icon {
+        margin:0 8rpx 0 0;
+      }
+      .sd_ca_ti_ti_ic_num {
+        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        .flex(inline-flex, false, center);
+        .overflow();
+      }
+      .sd_ca_ti_ti_ic_text {
+        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        .flex(inline-flex, false, center);
+        .overflow();
+      }
+  .sd_ca_dew {
+    width:100%; height:calc(12px * 6);
+    position:relative;
+  }
+    .sd_ca_de_private {
+      .bg-mask(.5);
+      width:100%; height:100%;
+      .flex(flex, center, center);
+      position:absolute; top:0; left:0;
+    }
+      .sd_ca_de_pr_line {
+        background:@bg-gradient03;
+        width:25%; height:2px;
+        border-radius:100%;
+      }
+      .sd_ca_de_pr_name {
+        font-size:@font-20; font-weight:@font-bold; .color-gradient06(); margin:0 10px; letter-spacing:2px;
+      }
+
+.sd_ph02 {
+  width:100%; height:220rpx;
+}

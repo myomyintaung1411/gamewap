@@ -1,0 +1,57 @@
+.sta_model {
+  height:320rpx;
+  .flex(flex, false, flex-end); flex-direction:column;
+  position:absolute; top:100rpx; right:/* 36rpx */0;
+}
+
+.sta_ph01 {
+  flex:1;
+}
+
+.sta_view {
+  margin:0 36rpx 4rpx 0;
+}
+  .sta_vi_icon {
+    width:40rpx; height:40rpx;
+  }
+
+.sta_bottom {
+  .flex(inline-flex, flex-end, center);
+}
+  .sta_bo_switch {
+    margin:-20rpx 30rpx 0 0;
+    .flex(inline-flex);
+  }
+    .sta_bo_sw_name {
+      font-size:@font-12; margin:2rpx 10rpx 0 0;
+      opacity:.4;
+    }
+    .sta_bo_sw_content {
+      width:74rpx; height:30rpx;
+
+      :deep(.uni-switch-wrapper) {
+        width:100%; height:100%; margin-top:-10rpx;
+        .uni-switch-input {
+          width:100%; height:100%;
+
+          &:before {
+            width:100%; height:100%;
+          }
+          &:after {
+            width:28rpx; height:28rpx;
+          }
+        }
+      }
+    }
+  .sta_bo_view {
+    margin:0 36rpx 4rpx 0;
+
+    &._size01 {
+      .sta_bo_vi_icon {
+        width:40rpx; height:40rpx;
+      }
+    }
+  }
+    .sta_bo_vi_icon {
+      width:40rpx; height:40rpx;
+    }

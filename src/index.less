@@ -1,0 +1,55 @@
+body {
+  background:@bg-body;
+  color:@color-normal; margin:0 0;
+  padding:0 0;
+  .unselectable();
+}
+
+img {
+  -webkit-user-drag:none;
+  user-drag:none;
+}
+
+.hidescroll {
+  .hidescroll();
+}
+
+.page-box {
+  width:100%; height:100vh;
+  .box-sizing();
+}
+
+.bg-page {
+  background:@bg-page;
+}
+
+.img-normal {
+  width:100%; height:100%;
+}
+
+.el-button {
+  span {
+    color:@color-normal;
+  }
+}
+
+.animation-bling {
+  animation:ani_bling 1s infinite;
+}
+@keyframes ani_bling {
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+
+.confirm-model {
+  .el-message-box__btns {
+    .el-button {
+      &:nth-child(1) {
+        span {
+          .color-mask(.6);
+        }
+      }
+    }
+  }
+}

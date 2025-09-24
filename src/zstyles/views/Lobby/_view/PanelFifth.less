@@ -1,0 +1,29 @@
+.pf_box {
+  background-color:@bg-white;
+  width:100%; height:100%;
+  // overflow-x:scroll;
+  scrollbar-width:none;
+  .hidescroll();
+}
+
+.pf_model {
+  min-width:100%; width:calc((var(--length) * var(--viewSize03)) + (var(--viewSize03) * 2)); height:100%;
+  .flex(flex); flex-direction:column; flex-wrap:wrap; align-content:flex-start;
+  background:
+    linear-gradient(90deg, @bg-dew-line 1px, transparent 1px),
+    linear-gradient(0deg, @bg-dew-line 1px, transparent 1px);
+  background-size: calc(var(--viewSize03) * 2) calc(var(--viewSize03) * 2);
+  background-color:@bg-white;
+  .box-sizing(); padding:0 var(--viewSize03) 0 0;
+  position:relative;
+}
+  .ps_look {
+    position:absolute; top:0; right:0;
+  }
+
+.pf_view {
+  width:var(--viewSize03); height:var(--viewSize03); line-height:0; font-size:0;
+  .img-normal {
+    width:var(--iconSize); height:var(--iconSize); margin:var(--iconMargin);
+  }
+}

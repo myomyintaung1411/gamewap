@@ -1,0 +1,32 @@
+.ac_model {
+  .flex(flex);
+  position:absolute; bottom:10rpx; right:20rpx;
+  z-index:10;
+}
+
+.ab_view {
+  .bg-mask(.2);
+  margin:0 20rpx 0 0;
+  .flex(inline-flex, false, center); flex-direction:column;
+  padding:6px 6px;
+  border:.1px solid; .border-color-white(.2);
+  border-radius:6px;
+  position:relative;
+  .pointer();
+  // .overflow();
+
+  &:after {
+    content:'';
+    position:absolute; top:-10rpx; right:-10rpx; bottom:-10rpx; left:-10rpx;
+  }
+
+  &:last-child {
+    margin-right:0;
+  }
+}
+  .ab_vi_icon {
+    /* margin:0 0 4px 0; */
+  }
+  .ab_vi_name {
+    font-size:@font-10; letter-spacing:1.2px;
+  }

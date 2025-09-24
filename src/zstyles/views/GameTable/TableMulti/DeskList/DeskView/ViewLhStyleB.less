@@ -1,0 +1,29 @@
+.vlsb_model {
+  width:100%; height:100%;
+  .flex(flex); flex-wrap:wrap;
+  position:relative;
+}
+
+.vlsb_ph01 {
+  background:rgba(255, 255, 255, .1);
+  width:1px; height:100%;
+  position:absolute; top:0; left:calc((100% / 3) - 1px);
+}
+.vlsb_ph02 {
+  background:rgba(255, 255, 255, .1);
+  width:1px; height:100%;
+  position:absolute; top:0; left:calc(((100% / 3) * 2) - 1px);
+}
+
+
+.vlsb_view {
+
+  &._view01 {
+    width:calc(100% / 3); height:100%;
+
+    :deep(.vb_name) {
+      font-size:@font-14;
+    }
+  }
+}
+

@@ -1,0 +1,65 @@
+.videoverify_mask {
+  // .bg-mask(.4);
+  width:100%; height:100vh;
+  position:fixed; top:0; right:0;
+  z-index:200;
+}
+
+.videoverify_model {
+  // .bg-mask(.98);
+  width:80%;
+  .box-sizing(); padding:10rpx 20rpx 40rpx 20rpx;
+  border-radius:8rpx;
+  border:1px solid; .border-color-white(.4);
+  position:fixed; top:20vh; right:10%;
+  z-index:210;
+  background-color:rgba(0, 0, 0, 0.7); /* 半透明白色背景 */
+}
+
+.videoverify_title {
+  width:100%; font-size:@font-20; .color-gradient03(); text-align:center; margin:0 0 10px 0;
+}
+
+.videoverify_border {
+  background:@bg-gradient07;
+  width:100%; height:2px; margin:0 0 20px 0;
+  border-radius:100%;
+}
+
+.videoverify_line {
+  width:100%; margin:0 0 30px 0;
+  .flex(flex, center, center);
+}
+  .videoverify_li_name {
+    font-size:@font-16; .color-gradient03();
+    flex-shrink:0;
+    span {
+      color:@color-red; margin:0 2px 0 0;
+    }
+  }
+  .videoverify_li_input {
+    width:140px; height:30px;
+    .box-sizing(); padding:0 20rpx;
+    .el-input__wrapper {
+      background:transparent;
+      box-shadow:none;
+      .el-input__inner {
+        height:100%; font-size:@font-16; color:@color-theme;
+      }
+    }
+  }
+
+.videoverify_button {
+  width:60%; margin:0 auto;
+  .flex(flex, space-around);
+}
+  .videoverify_bu_view {
+    background:transparent !important;
+    font-size:30rpx; color:@color-theme;
+    .box-sizing(); padding:10rpx 30rpx;
+    border:1rpx solid; border-color:@border-color-theme !important;
+    border-radius:60px;
+    span {
+      .color-gradient03() !important;
+    }
+  }

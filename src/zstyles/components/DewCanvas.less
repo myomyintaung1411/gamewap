@@ -1,0 +1,24 @@
+.dc_model {
+  width:100%; height:100%;
+
+  ::-webkit-scrollbar {
+    display:none;
+  }
+}
+
+.dc_content {
+  min-width:100%; height:100%;
+  display:grid;
+  gap:0;
+  grid-auto-flow:column;
+}
+
+.dc_view {
+  font-size:0;
+  position:relative;
+}
+  .dc_vi_num {
+    width:100%; height:100%; font-size:@font-10; font-weight:@font-bold; color:@color-green-deep;
+    .flex(inline-flex, center, center);
+    position:absolute; top:0; left:0;
+  }
