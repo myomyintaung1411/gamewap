@@ -1,4 +1,5 @@
 import { useUserStore } from '@front/stores/modules/user.store';
+import i18n from '@front/config/index'   // ✅ import global i18n instance
 
 let USER_STORE = null;
 const _userStore = ()=> {
@@ -11,7 +12,15 @@ let _timerId = '',
     lastClickTime = ''
 ;
 
+
+function getLangParam() {
+  const lang = i18n.global.locale.value || 'zh';
+  return lang 
+}
+
 function _startTimeOut() {
+   const langParam = getLangParam();
+
   clearInterval(_timerId);
   _timerId = setInterval(()=> {
     const _lastClickTime = Number(lastClickTime || new Date().getTime()) * 1;
@@ -41,7 +50,7 @@ function _startTimeOut() {
           });
         },
       })*/
-      window.$loading(true, '自动退出登录');
+      window.$loading(true, langParam == 'zh' ? '自动退出登录' : 'Automatic logout');
       _userStore().userLoginOut().then(()=> {
         // 自动退出时，清空上次登录获取的时间
         lastClickTime = ''
@@ -49,7 +58,7 @@ function _startTimeOut() {
         setTimeout(()=> {
           uni.showModal({
             title: '',
-            content: '您已长时间未下注, 系统帮您退出到登录界面',
+            content: langParam == 'zh' ? '您已长时间未下注, 系统帮您退出到登录界面' : 'You have not bet for a long time, the system helps you log out to the login interface',
             showCancel: false,
             confirmText: '知道了',
             success: ()=> {},
@@ -62,7 +71,7 @@ function _startTimeOut() {
       &&
       (_nowTime - _lastClickTime < (1000 * (/*600*/900 - ((60 * 2) - 10))))
     ) {
-      window.$msg('已经长时间未押注，两分钟后将自动退出', 3000);
+      window.$msg( langParam == 'zh' ?  '已经长时间未押注，两分钟后将自动退出' : "If you haven't placed any bets for a long time, you will be automatically logged out after two minutes.", 3000);
 
     }
   }, 10000);

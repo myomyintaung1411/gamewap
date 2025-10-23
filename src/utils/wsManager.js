@@ -8,7 +8,12 @@ import DataServer from '@front/server/index';
 import router from '@front/routers';
 import { EventEmitter, } from '@front/eventBus/index';
 import { VIDEO_RECONNECT_REFRESH, } from '@front/eventBus/actions';
+import i18n from '@front/config/index'   // ✅ import global i18n instance
 
+function getLangParam() {
+  const lang = i18n.global.locale.value || 'zh';
+  return lang === 'zh' ? 'zh_CN' : 'en_US';
+}
 let SYSTEM_STORE = null,
     LOG_STORE = null
 ;
@@ -54,6 +59,7 @@ function _wsConnectEd(isReConnect) {
 }
 
 function _wsUnConnect(willReConnect) {
+   const langParam = getLangParam();
   if (_stopIsManMade) return;
 
   if (willReConnect) {
@@ -61,9 +67,9 @@ function _wsUnConnect(willReConnect) {
     window.$showWsConnectStatus && window.$showWsConnectStatus();
 
     _systemStore().aotuSwitchOtherNetwork();
-    // DataServer.$route['/ws/wsUrlChange'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
-    const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
-     DataServer.$route['/ws/wsUrlChange'](wsUrl);
+    //  DataServer.$route['/ws/wsUrlChange'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
+     const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
+      DataServer.$route['/ws/wsUrlChange'](wsUrl);
     return _systemStore().setWsStatus('reloading');
   }
   window.$closeWsConnectStatus && window.$closeWsConnectStatus();
@@ -132,6 +138,7 @@ function _wsReceiveMessage(type, data) {
  * 开启链接
  */
 export async function listenStart() {
+   const langParam = getLangParam();
   _stopIsManMade = false;
 
   _logStore().addLog('', `wsManager listenStart _isConnectReqIng-${_isConnectReqIng} _isConnectEd-${_isConnectEd}`);
@@ -150,10 +157,10 @@ export async function listenStart() {
   _logStore().addLog('', `wsManager listenStart send a-${_systemStore().getUrlWs} b-${useUserStore().getUserId}`);
   if (!useUserStore().getUserId) {
     router.replace('/');
-  }
-    const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
+   }
+     const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
      DataServer.$route['/ws/listenStart'](wsUrl);
-    //DataServer.$route['/ws/listenStart'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
+  //  DataServer.$route['/ws/listenStart'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
 }
 
 /**

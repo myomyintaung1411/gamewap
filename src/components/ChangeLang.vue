@@ -182,10 +182,9 @@ function _bindClose() {
 }
 
 .lang_img {
-  width: 28px;
-  height: 20px;
-  object-fit: cover;
-  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+
 }
 
 .lang_text {

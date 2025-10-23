@@ -9,7 +9,14 @@
 
       <!-- 弹窗内容 -->
       <view v-for="(item,i) in _listData" :key="i">
-        <template v-if='item.show'>
+        <template v-if='item.show && item.attribute == "changeLanguage"'>
+          <view class="popup-style" @click="_clickIcon(item)">
+            <img @click="_bindChangeLang"  :src="lang == 'zh' ? zhImg : enImg " alt="lang" class="popup-icon" style="  width: 48rpx;height: 48rpx;">
+            <!-- <SvgIcon :name='item.icon' class="popup-icon" size='28' /> -->
+            <view class="popup-text">{{ item.name }}</view>
+          </view>
+        </template>
+        <template v-else-if='item.show'>
           <view class="popup-style" @click="_clickIcon(item)">
             <SvgIcon :name='item.icon' class="popup-icon" size='28' />
             <view class="popup-text">{{ item.name }}</view>
@@ -27,7 +34,7 @@
 </view>
 </template>
 <script setup>
-import { ref, } from 'vue';
+import { ref, computed} from 'vue';
 import PerfComponent from '@front/components/PerfComponent.vue';
 import { useUserStore } from '@front/stores/modules/user.store';
 import { useDeskStore } from '@front/stores/modules/desk.store';
@@ -35,8 +42,10 @@ import { useSystemStore } from '@front/stores/modules/system.store';
 import { EventEmitter, } from '@front/eventBus/index';
 import { VOICE_SEND, } from '@front/eventBus/actions';
 import { useI18n } from "vue-i18n";
-
-const { t } = useI18n();
+import zhImg from '@front/assets/cn.png';
+import enImg from '@front/assets/us.png';
+const { t,locale } = useI18n();
+	locale.value = uni.getStorageSync('l') || 'zh';
 // #ifdef APP-PLUS
   import PCompWithdrawApply from '@front/components/WithdrawApply.vue';
   import PCompGameRule from '@front/components/GameRule.vue';
@@ -49,6 +58,7 @@ const { t } = useI18n();
 // #endif
 
 const _emits = defineEmits(['perfComponentClose']);
+const lang = computed(() => locale.value);
 
 const userStore = useUserStore(),
       deskStore = useDeskStore(),

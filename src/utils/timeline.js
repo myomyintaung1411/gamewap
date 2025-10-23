@@ -21,8 +21,8 @@ export function setDiffWithServer(serverTimestamp) {
 /**
  * 获取剩余倒计时时间
  * @param {Number} totalCount 总计时 (35)
- * @param {Number} startTime 本口开始时间点
- * @param {Number} executedTime 当前已执行到时间点
+ * @param {Number} startTime 本口开始时间点 Start time of this port
+ * @param {Number} executedTime 当前已执行到时间点 Currently executed to the time point
  */
 export function getTimmingNum(totalCount, startTime, executedTime) {
   return (
@@ -124,29 +124,55 @@ export function autoGetDateRange(type) {
 
       return [`${_formatDate(_startStr)} 12:00:00`, `${_formatDate(_endStr)} 11:59:59`];
     }
-    case 'thisweek': {
-      const _now = new Date();
+    // case 'thisweek': {
+    //   const _now = new Date();
 
-      const _todayOfWeek = _now.getDay();
+    //   const _todayOfWeek = _now.getDay();
 
-      if (_todayOfWeek === 1 && _is12HourBefOfAft() === 'before') return autoGetDateRange('laseweek');
+    //   if (_todayOfWeek === 1 && _is12HourBefOfAft() === 'before') return autoGetDateRange('laseweek');
 
-      // 本周一的日期
-      const _monday = new Date(_now);
-      _monday.setDate(_now.getDate() - _todayOfWeek + (_todayOfWeek === 0 ? -6 : 1));
-      _monday.setHours(12);
-      _monday.setMinutes(0);
-      _monday.setSeconds(0);
-      _monday.setMilliseconds(0);
+    //   // 本周一的日期
+    //   const _monday = new Date(_now);
+    //   _monday.setDate(_now.getDate() - _todayOfWeek + (_todayOfWeek === 0 ? -6 : 1));
+    //   _monday.setHours(12);
+    //   _monday.setMinutes(0);
+    //   _monday.setSeconds(0);
+    //   _monday.setMilliseconds(0);
 
-      // return [`${_formatDate(_monday)} 12:00:00`, `${formatDateTime(_now)}`];
-      return [
-        `${_formatDate(_monday)} 12:00:00`,
-        (
-          _now > _monday ? `${formatDateTime(_now)}` : `${_formatDate(_monday)} 12:00:00`
-        )
-      ];
-    }
+    //   // return [`${_formatDate(_monday)} 12:00:00`, `${formatDateTime(_now)}`];
+    //   return [
+    //     `${_formatDate(_monday)} 12:00:00`,
+    //     (
+    //       _now > _monday ? `${formatDateTime(_now)}` : `${_formatDate(_monday)} 12:00:00`
+    //     )
+    //   ];
+    // }
+      case 'thisweek': {
+        const _now = new Date();
+        const _todayOfWeek = _now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+
+        if (_todayOfWeek === 1 && _is12HourBefOfAft() === 'before') {
+          return autoGetDateRange('laseweek');
+        }
+
+        // ✅ Always start from Monday
+        const daysToMonday = _todayOfWeek === 0 ? 6 : _todayOfWeek - 1;
+        const _monday = new Date(_now);
+        _monday.setDate(_now.getDate() - daysToMonday);
+        _monday.setHours(12, 0, 0, 0);
+
+        // ✅ End of week = upcoming Sunday
+        const _sunday = new Date(_monday);
+        _sunday.setDate(_monday.getDate() + 6);
+        _sunday.setHours(11, 59, 59, 999);
+
+        return [
+          `${_formatDate(_monday)} 12:00:00`,
+          `${_formatDate(_sunday)} 11:59:59`
+        ];
+}
+
+
     case 'laseweek': {
       const _now = new Date();
 
@@ -211,29 +237,55 @@ export function autoGetDateRangeAllDay(type) {
 
       return [`${_formatDate(_startStr)} 00:00:00`, `${_formatDate(_endStr)} 23:59:59`];
     }
-    case 'thisweek': {
-      const _now = new Date();
+    // case 'thisweek': {
+    //   const _now = new Date();
 
-      const _todayOfWeek = _now.getDay();
+    //   const _todayOfWeek = _now.getDay();
 
-      if (_todayOfWeek === 1 && _is12HourBefOfAft() === 'before') return autoGetDateRangeAllDay('laseweek');
+    //   if (_todayOfWeek === 1 && _is12HourBefOfAft() === 'before') return autoGetDateRangeAllDay('laseweek');
 
-      // 本周一的日期
-      const _monday = new Date(_now);
-      _monday.setDate(_now.getDate() - _todayOfWeek + (_todayOfWeek === 0 ? -6 : 0));
-      _monday.setHours(12);
-      _monday.setMinutes(0);
-      _monday.setSeconds(0);
-      _monday.setMilliseconds(0);
+    //   // 本周一的日期
+    //   const _monday = new Date(_now);
+    //   _monday.setDate(_now.getDate() - _todayOfWeek + (_todayOfWeek === 0 ? -6 : 0));
+    //   _monday.setHours(12);
+    //   _monday.setMinutes(0);
+    //   _monday.setSeconds(0);
+    //   _monday.setMilliseconds(0);
 
-      // return [`${_formatDate(_monday)} 12:00:00`, `${formatDateTime(_now)}`];
-      return [
-        `${_formatDate(_monday)} 00:00:00`,
-        (
-          _now > _monday ? `${formatDateTime(_now)}` : `${_formatDate(_monday)} 00:00:00`
-        )
-      ];
-    }
+    //   // return [`${_formatDate(_monday)} 12:00:00`, `${formatDateTime(_now)}`];
+    //   return [
+    //     `${_formatDate(_monday)} 00:00:00`,
+    //     (
+    //       _now > _monday ? `${formatDateTime(_now)}` : `${_formatDate(_monday)} 00:00:00`
+    //     )
+    //   ];
+    // }
+      case 'thisweek': {
+        const _now = new Date();
+        const _todayOfWeek = _now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+
+        // If it's Monday morning before noon, still consider it as part of last week
+        if (_todayOfWeek === 1 && _is12HourBefOfAft && _is12HourBefOfAft() === 'before') {
+          return autoGetDateRangeAllDay('laseweek');
+        }
+
+        // ✅ Always start from Monday
+        const daysToMonday = _todayOfWeek === 0 ? 6 : _todayOfWeek - 1;
+        const _monday = new Date(_now);
+        _monday.setDate(_now.getDate() - daysToMonday);
+        _monday.setHours(0, 0, 0, 0);
+
+        // ✅ End of week = upcoming Sunday
+        const _sunday = new Date(_monday);
+        _sunday.setDate(_monday.getDate() + 6);
+        _sunday.setHours(23, 59, 59, 999);
+
+        return [
+          `${_formatDate(_monday)} 00:00:00`,
+          `${_formatDate(_sunday)} 23:59:59`
+        ];
+      }
+
     case 'laseweek': {
       const _now = new Date();
 

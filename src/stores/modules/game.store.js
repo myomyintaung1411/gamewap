@@ -66,8 +66,8 @@ export const useGameStore = defineStore({
     gameShortName: '',
     isLive: false, // 是否是三合一
     timming: {
-      value: NaN, // <Number || NaN> 倒计时时间
-      totalTime: NaN, // <Number || NaN> 总时长
+      value: NaN, // <Number || NaN> 倒计时时间 countdown time
+      totalTime: NaN, // <Number || NaN> 总时长 total time
     },
     videoUrl: '',
     pokerInfo: { // 开牌信息

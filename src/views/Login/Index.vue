@@ -5,11 +5,11 @@
     <view style="padding-top: 10%;">
       <view class='li_form' >
         <image class='li_title' :src="userStore.getImageBase + 'icons/logo2.png'"/>
-         <img @click="_bindChangeLang"  src="../../assets/language.png" alt="lang" class="" style=" cursor: pointer; position: absolute;top: 30rpx;right: 30rpx;width: 60rpx;height: 60rpx;">
+         <img @click="_bindChangeLang"  :src="lang == 'zh' ? zhImg : enImg " alt="lang" class="" style=" cursor: pointer; position: absolute;top: 30rpx;right: 30rpx;width: 60rpx;height: 60rpx;">
         <!--  -->
          <view class='li_line'>
           <SvgIcon class='li_li_icon' name='login-user' size='30' />
-          <input class='li_li_input login' @keyup.enter="_bindLogin(false)" @confirm='_bindLogin(false)' :placeholder='t("login.account")' v-model='_form.name' :disabled='_submitLoading' />
+          <input type="number"  maxlength="8" inputmode="numeric"  @input="onInputName" minlength="4" class='li_li_input login' @keyup.enter="_bindLogin(false)" @confirm='_bindLogin(false)' :placeholder='t("login.account")' v-model='_form.name' :disabled='_submitLoading' />
         </view>
 
         <view class='li_line'>
@@ -80,7 +80,7 @@
         <view class="li_action">
           <button class='li_ac_button _theme01' @tap='_bindReset'><span class='li_ac_bu_fill'>{{t("login.reset")}}</span></button>
         </view>
-        <view class="li_action">
+        <view v-if="!isSpecialAgent" class="li_action">
           <button class='li_ac_button _theme02' @tap='_bindTryPlay'><span class='li_ac_bu_fill'>{{t("login.try")}}</span></button>
         </view>
             
@@ -98,10 +98,13 @@
 </view>
 </template>
 <script setup name='Login'>
-import { ref, } from 'vue';
+import { ref, computed} from 'vue';
 import { onLoad, onShow } from '@dcloudio/uni-app';
+import { isSpecialAgent } from '../../utils/AgentCheck';
 // import Img03 from '@front/assets/imgs/bgs/ycmm.png';
 // import Img04 from '@front/assets/imgs/bgs/zxmm.png';
+import zhImg from '@front/assets/cn.png';
+import enImg from '@front/assets/us.png';
 import PageBaseImport from '@front/components/PageBaseImport.vue';
 import TryItPlay from '@front/components/TryItPlay.vue';
 import ChangeLang from '@front/components/ChangeLang.vue';
@@ -120,7 +123,10 @@ import { listenStart } from '@front/utils/wsManager';
 import { startIdle, stopIdle } from '@front/utils/idleState';
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n();
+const { t,locale } = useI18n();
+	locale.value = uni.getStorageSync('l') || 'zh';
+  const lang = computed(() => locale.value);
+
 const userStore = useUserStore(),
       systemStore = useSystemStore()
 ;
@@ -173,6 +179,10 @@ function _bindNetWork(event) {
 
   // _bindRefreshVerifyCode();
 }
+const onInputName = (e) => {
+  let val = e.detail.value.replace(/\D/g, ''); // only digits
+  _form.value.name = val.slice(0, 8); // max 8 digits
+};
 async function _bindLogin(isAgain=false) {
   if(_submitLoading.value) return;
   if(!_form.value.name || !_form.value.pass) return window.$msg('账号或密码不能为空');

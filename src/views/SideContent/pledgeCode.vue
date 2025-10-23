@@ -124,11 +124,11 @@ function _closePopup() {
         _endStr
     ;
     if (userStore.agentType === 'creditAgent') {
-      _startStr = /*autoGetDateRange*/autoGetDateRangeAllDay(_isSelected.value)[0];
-      _endStr = /*autoGetDateRange*/autoGetDateRangeAllDay(_isSelected.value)[1];
+      _startStr = /*autoGetDateRange*/_isSelected.value ? autoGetDateRangeAllDay(_isSelected.value)[0] : `${_betTimeStart.value} 00:00:00`;
+      _endStr = /*autoGetDateRange*/_isSelected.value ? autoGetDateRangeAllDay(_isSelected.value)[1] : `${_betTimeEnd.value} 23:59:59`;
     } else {
-      _startStr = autoGetDateRangeAllDay(_isSelected.value)[0];
-      _endStr = autoGetDateRangeAllDay(_isSelected.value)[1];
+      _startStr = _isSelected.value ? autoGetDateRangeAllDay(_isSelected.value)[0] : `${_betTimeStart.value} 00:00:00`;
+      _endStr = _isSelected.value ? autoGetDateRangeAllDay(_isSelected.value)[1] : `${_betTimeEnd.value} 23:59:59`;
     }
     const _result =  await req_userJoinLog(params.page, params.line, _startStr, _endStr, params.status);
 
@@ -183,6 +183,7 @@ function _closePopup() {
       }
       _betTimeStart.value = e.detail.value
       if(_betTimeEnd.value && _betTimeStart.value){
+          _isSelected.value = '';
           _pageForm.value.page = 1
           _pageForm.value.line = 10
           _rowsData.value = []
@@ -199,6 +200,7 @@ function _closePopup() {
       }
       _betTimeEnd.value = e.detail.value
       if(_betTimeEnd.value && _betTimeStart.value){
+          _isSelected.value = '';
           _pageForm.value.page = 1
           _pageForm.value.line = 10
           _rowsData.value = []

@@ -39,7 +39,7 @@ export const useOperaStore = defineStore({
       submitWaitBet: false,
       cancelIsAffirmBet: false,
     },
-    chipsBjlEd: 'chip-1000', // bjl-已选筹码
+    chipsBjlEd: '', // bjl-已选筹码 chip-1000
     chipsBjlList: [ // bjl-筹码列表
       // { ident:'chip-100', icon:'chip-100-shallow', valueStr:'100', },
       // { ident:'chip-500', icon:'chip-500-shallow', valueStr:'500', },
@@ -54,7 +54,9 @@ export const useOperaStore = defineStore({
   }),
   getters: {
         // lang: () => i18n.global.locale.value || "zh",
-
+     getLang(){
+    return this.lang
+    },
     getWaitBetAmountAll() {
       const _arrList = this.betBjlList.reduce((a,b)=> {
         a[b.ident] = (
@@ -220,8 +222,8 @@ export const useOperaStore = defineStore({
     // [betIdent=betBjlList.ident]
     addBet(betIdent) {
       if (!betIdent) return;
-      if (!this.chipsBjlEd) return;
       if (_gameStore().gameStatus !== 'timing') return;
+       if (!this.chipsBjlEd) return window.$msgWithGame('请选择筹码', 2000);
       if (["bet-longdan", "bet-hudan", "bet-longshuang", "bet-hushuang"].includes(betIdent) && _gameStore().disableBetLhDS) return;
 
       const _chipItem = this.chipsBjlList.find(f=> f.ident === this.chipsBjlEd);

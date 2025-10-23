@@ -114,10 +114,12 @@ function _bindSwitchChip(event) {
     _targetChipIdent = _useChipList.value[_curIndex + 1].ident;
 
   }
+  console.log('_targetChipIdent', _targetChipIdent);
   operaStore.setChipsBjlEd(_targetChipIdent);
 }
 
 function _bindChipSetting() {
+  console.log('_bindChipSetting');
   _vChipsSetting.value.showChange();
 }
 

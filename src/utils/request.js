@@ -3,7 +3,12 @@ import Respons from '@front/entitys/respons.entity';
 import { useUserStore } from '@front/stores/modules/user.store';
 import { useSystemStore } from '@front/stores/modules/system.store';
 import { setDiffWithServer } from '@front/utils/timeline';
+import i18n from '@front/config/index'   // ✅ import global i18n instance
 
+function getLangParam() {
+  const lang = i18n.global.locale.value || 'zh';
+  return lang === 'zh' ? 'zh_CN' : 'en_US';
+}
 let USER_STORE = null,
     SYSTEM_STORE = null
 ;
@@ -41,6 +46,8 @@ export default function request(url, params={ method:'get', data:{}, queryUrl:''
   params.method = params.method.toUpperCase();
   const data = params.method === 'GET' ? 'params' : 'data';
 
+ const langParam = getLangParam();
+
   return new Promise(async resolve=> {
 
     if (!_systemStore().isDomainLoadEd) {
@@ -51,7 +58,7 @@ export default function request(url, params={ method:'get', data:{}, queryUrl:''
       // if (!_systemStore().netWorkEd) return resolve(config);
     }
 
-    const _url = (
+    let _url = (
             (
               [/*'/postMsg'*/'/ajax.php'].includes(url) ? _systemStore().getNetWorkVideoVerify :
               ['/api/index/checkupdate'].includes(url) ? _systemStore().getNetWorkUpdateApp :
@@ -77,9 +84,16 @@ export default function request(url, params={ method:'get', data:{}, queryUrl:''
                   'Token': _userStore().token,
                   'Content-Type': (url && _contentType[url]) || CONTENT_TYPE_A,
                   'X-Platform': 'pc',
+                  //'lang': langParam,  // ✅ add Lang header
                 })
           )
     ;
+    // Append lang for GET requests
+  // if (params.method === 'GET') {
+  //   const langParam = getLangParam();
+  //   const hasQuery = _url.includes('?');
+  //   _url = `${_url}${hasQuery ? '&' : '?'}lang=${langParam}`;
+  // }
 
     if (url === '/common/upload') {
       axios

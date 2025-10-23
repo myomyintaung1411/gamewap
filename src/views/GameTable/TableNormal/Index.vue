@@ -103,6 +103,7 @@ function _changeIsNotCommission(value) {
 provide('changeIsNotCommission', _changeIsNotCommission);
 
 function _changeChipsUseList(value) {
+  console.log('changeChipsUseList', value);
   if (value.length >= 1) {
     if (!value.includes(operaStore.chipsBjlEd)) {
       operaStore.setChipsBjlEd(value[0]);

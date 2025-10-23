@@ -19,7 +19,7 @@ export function sessionGet(key) {
   // #ifndef APP-PLUS
     const value = sessionStorage.getItem(key);
     try {
-      return JSON.parse(sessionStorage.getItem(key));
+      return JSON.parse(window.sessionStorage.getItem(key));
     } catch (error) {
       return value;
     }

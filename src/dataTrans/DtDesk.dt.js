@@ -101,8 +101,8 @@ const _ep = {
 
   _addBet(betIdent, chipsBjlEd) {
     if (!betIdent) return;
-    if (!chipsBjlEd) return;
     if ((this.gameStatus !== 'timing' || this.timming.value === 0) || this.isPrivateIng) return;
+    if (!chipsBjlEd) return window.$msgWithGame('请选择筹码', 2000);
     if (['bet-longdan', 'bet-hudan', 'bet-longshuang', 'bet-hushuang'].includes(betIdent) && this.disableBetLhDS()) return;
 
     const _chipsBjlList = _operaStore().chipsBjlList;

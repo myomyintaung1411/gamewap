@@ -1,22 +1,32 @@
 import { createI18n } from 'vue-i18n';
 import en from './en.json';
 import zh from './zh.json';
-import { useUserStore } from '@/stores/modules/user.store';
-import { computed } from 'vue';
 
-function languageFromStore() {
-  const userStore = useUserStore();
-  return userStore.getLang || uni.getStorageSync('l') || 'zh';
+function getDefaultLang() {
+  let lang = 'zh';
+  try {
+    // APP-PLUS runtime
+    // #ifdef APP-PLUS
+    lang = uni.getStorageSync('l') || lang;
+    // #endif
+
+    // H5 runtime
+    // #ifndef APP-PLUS
+    if (typeof window !== 'undefined' && window.localStorage) {
+      lang = window.localStorage.getItem('l') || lang;
+    }
+    // #endif
+  } catch (e) {
+    // fallback to zh
+  }
+  return lang;
 }
 
-const lang = computed(() => languageFromStore());
-const defaultLang = uni.getStorageSync('l') || 'zh';
-
 const i18n = createI18n({
-  legacy: false, // use Composition API mode
-  locale: defaultLang,
+  legacy: false,
+  locale: getDefaultLang(),
   fallbackLocale: 'zh',
-  globalInjection: true, // allows using $t globally
+  globalInjection: true,
   messages: { en, zh },
 });
 

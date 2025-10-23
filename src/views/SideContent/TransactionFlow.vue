@@ -174,24 +174,16 @@ const { t } = useI18n();
       }
 
       _queryloading.value = true
-      // let _result = false;
-      // if (userStore.agentType === 'cashAgent') {
-      //  const [ _startStr, _endStr ] = autoGetDateRangeAllDay(_isSelected.value);
-      //  _result =  await req_systemAccountChangeSimpleList(params.page, params.line, _startStr, _endStr, params.status)
-      // } else {
-      //  _result =  await req_systemAccountChangeSimpleList(params.page,params.line,params.startTime,params.endTime,params.status)
-      // }
-      // const [ _startStr, _endStr ] = autoGetDateRangeAllDay(_isSelected.value);
 
       let _startStr = '',
           _endStr
       ;
       if (userStore.agentType === 'creditAgent') {
-        _startStr = autoGetDateRange(_isSelected.value)[0];
-        _endStr = autoGetDateRange(_isSelected.value)[1];
+        _startStr = _isSelected.value ? autoGetDateRange(_isSelected.value)[0] : `${_betTimeStart.value} 00:00:00`;
+        _endStr = _isSelected.value ? autoGetDateRange(_isSelected.value)[1] : `${_betTimeEnd.value} 23:59:59`;
       } else {
-        _startStr = autoGetDateRangeAllDay(_isSelected.value)[0];
-        _endStr = autoGetDateRangeAllDay(_isSelected.value)[1];
+        _startStr = _isSelected.value ? autoGetDateRangeAllDay(_isSelected.value)[0] : `${_betTimeStart.value} 00:00:00`;
+        _endStr = _isSelected.value ? autoGetDateRangeAllDay(_isSelected.value)[1] : `${_betTimeEnd.value} 23:59:59`;
       }
 
       let _result = false;
@@ -261,6 +253,7 @@ const { t } = useI18n();
         }
         _betTimeStart.value = e.detail.value
         if(_betTimeEnd.value && _betTimeStart.value){
+            _isSelected.value = '';
             _pageForm.value.page = 1
             _pageForm.value.line = 10
             _rowsData.value = []
@@ -277,6 +270,7 @@ const { t } = useI18n();
         }
         _betTimeEnd.value = e.detail.value
         if(_betTimeEnd.value && _betTimeStart.value){
+            _isSelected.value = '';
             _pageForm.value.page = 1
             _pageForm.value.line = 10
             _rowsData.value = []

@@ -99,7 +99,7 @@ function _bindChipsItem(event) {
 
 function _bindAffirm() {
   EventEmitter.emit(VOICE_SEND, 'a_room');
-
+  console.log('_listEd', _listEd.value);
   _changeChipsUseList(_listEd.value);
   localSet('table-multi-chips-use', _listEd.value);
 
