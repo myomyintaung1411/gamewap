@@ -5,7 +5,7 @@
     <view class='ba_ti_name'>{{ gameStore.gameShortName || '--' }} {{t("lobby.slot")}}: {{ isNaN(gameStore.roundInfo.roundNum) ? '' : gameStore.roundInfo.roundNum }}-{{ isNaN(gameStore.roundInfo.slotNum) ? '' : gameStore.roundInfo.slotNum }}</view>
 
     <view class='ba_ti_commission'>
-      <view class='ba_ti_co_co_name'>{{t("table.win")}}: {{ isNaN(gameStore.winAmount) ? 0 : gameStore.winAmount }}</view>
+      <!-- <view class='ba_ti_co_co_name'>{{t("table.win")}}: {{ isNaN(gameStore.winAmount) ? 0 : gameStore.winAmount }}</view> -->
       <!-- <switch class='ba_ti_co_content' :checked='_isNotCommission' color='#75bc2a' @change='_changeIsNotCommission(!_isNotCommission)' /> -->
     </view>
 

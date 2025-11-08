@@ -67,9 +67,9 @@ function _wsUnConnect(willReConnect) {
     window.$showWsConnectStatus && window.$showWsConnectStatus();
 
     _systemStore().aotuSwitchOtherNetwork();
-    //  DataServer.$route['/ws/wsUrlChange'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
-     const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
-      DataServer.$route['/ws/wsUrlChange'](wsUrl);
+     DataServer.$route['/ws/wsUrlChange'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
+    //  const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
+    //   DataServer.$route['/ws/wsUrlChange'](wsUrl);
     return _systemStore().setWsStatus('reloading');
   }
   window.$closeWsConnectStatus && window.$closeWsConnectStatus();
@@ -158,9 +158,9 @@ export async function listenStart() {
   if (!useUserStore().getUserId) {
     router.replace('/');
    }
-     const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
-     DataServer.$route['/ws/listenStart'](wsUrl);
-  //  DataServer.$route['/ws/listenStart'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
+    //  const wsUrl = `wss://${window.location.host}${_systemStore().getUrlWs}?${useUserStore().getUserId}`;
+    //  DataServer.$route['/ws/listenStart'](wsUrl);
+    DataServer.$route['/ws/listenStart'](`${_systemStore().getUrlWs}?${useUserStore().getUserId}`);
 }
 
 /**
