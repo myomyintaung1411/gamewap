@@ -14,14 +14,16 @@
 
   <view class='tn_betarea'>
     <BetArea />
+    <PokerInfo />
   </view>
+
 
   <view class='tn_poker'>
     <ChipsArea />
 
     <RouteOpera />
 
-    <PokerInfo />
+    <!-- <PokerInfo /> -->
   </view>
 
   <view class='tn_dew'>

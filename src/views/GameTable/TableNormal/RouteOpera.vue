@@ -1,7 +1,7 @@
 <template>
 <view class='ro_model'>
 
-  <image class='ro_bg' :src='userStore.getImageBase + "bgs/bg-game-table-route-opera.png"' />
+  <!-- <image class='ro_bg' :src='userStore.getImageBase + "bgs/bg-game-table-route-opera.png"' /> -->
 
   <view class='ro_list'>
     <template v-for='item in _totalList' :key='item.id'>

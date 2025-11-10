@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 <view class='vbsa_model'>
 
   <view class='vbsa_ph01'></view>
@@ -17,7 +17,53 @@
   <ViewBlock class='vbsa_view _view02' color='colorB' :rate='gameStore.betRate.notCommission.zhuang' ident='bet-zhuang' :name='t("bjl_short.zhuang")' />
 
 </view>
+</template> -->
+<template>
+  <view class="vbsa_model">
+    <!-- Top row: three equal tiles -->
+    <ViewBlock
+      class="vb_cell top top-1"
+      color="colorA"
+      :rate="gameStore.betRate.notCommission.xianDui"
+      ident="bet-xiandui"
+      :name='t("bjl_short.xiandui")'
+    />
+
+    <ViewBlock
+      class="vb_cell top top-2"
+      color="colorC"
+      :rate="gameStore.betRate.notCommission.he"
+      ident="bet-he"
+      :name='t("bjl_short.he")'
+    />
+
+    <ViewBlock
+      class="vb_cell top top-3"
+      color="colorB"
+      :rate="gameStore.betRate.notCommission.zhuangDui"
+      ident="bet-zhuangdui"
+      :name='t("bjl_short.zhuangdui")'
+    />
+
+    <!-- Bottom row: two half tiles -->
+    <ViewBlock
+      class="vb_cell bottom bottom-left"
+      color="colorA"
+      :rate="gameStore.betRate.notCommission.xian"
+      ident="bet-xian"
+      :name='t("bjl_short.xian")'
+    />
+
+    <ViewBlock
+      class="vb_cell bottom bottom-right"
+      color="colorB"
+      :rate="gameStore.betRate.notCommission.zhuang"
+      ident="bet-zhuang"
+      :name='t("bjl_short.zhuang")'
+    />
+  </view>
 </template>
+
 <script setup name='ViewBjlStyleA'>
 import ViewBlock from './ViewBlock.vue';
 import { useGameStore } from '@front/stores/modules/game.store';

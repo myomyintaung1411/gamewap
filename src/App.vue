@@ -69,9 +69,9 @@ export default {
     });*/
   },
   onShow() {
-    	if (uni.getSystemInfoSync().platform !== "devtools") {
-				console.log = () => {}
-			}
+    	// if (uni.getSystemInfoSync().platform !== "devtools") {
+			// 	console.log = () => {}
+			// }
     const _pages = getCurrentPages();
     if (_pages.length > 0 && _pages[_pages.length - 1].route !== 'views/Login/Index') {
       listenStart();

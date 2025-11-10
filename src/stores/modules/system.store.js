@@ -30,7 +30,7 @@ export const useSystemStore = defineStore({
       //   :
       [
         //{ ident:'netcom', name:'电信', urlHttp:import.meta.env.VITE_HTTP_NETCOM, urlWs:import.meta.env.VITE_WS_NETCOM, status:'', },
-        { ident:'netcom', name:'电信', urlHttp:'/api', urlWs:'/wsapi', status:'', },
+        { ident:'netcom', name:'电信', urlHttp:'https://95527.vip/api', urlWs:'wss://95527.vip/wsapi', status:'', },
       ]
     ),
     netWorkEd: (

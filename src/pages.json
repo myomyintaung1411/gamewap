@@ -1,6 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "views/Start/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "views/Login/Index",
 			"style": {
 				"navigationStyle": "custom"
