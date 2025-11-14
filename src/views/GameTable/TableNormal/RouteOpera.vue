@@ -6,7 +6,8 @@
   <view class='ro_list'>
     <template v-for='item in _totalList' :key='item.id'>
       <view :class='["ro_li_view", `_ident-${item.ident}`]'>
-        <SvgIcon class='ro_li_vi_icon' name='' />
+        <!-- <SvgIcon class='ro_li_vi_icon' name='' /> -->
+         <img :src="item.img" alt="icon" class="ro_li_vi_icon" />
         <view class='ro_li_vi_name'>{{item.value()}}</view>
       </view>
     </template>
@@ -15,21 +16,21 @@
   <view class='ro_action'>
 
     <view class='ro_ac_ask' data-ident='zhunag' :data-str='{"bjl":"庄赢,大", "lh":"龙赢,大"}[gameStore.gameType]' @tap='_bindAsk'>
+    <view class='ro_ac_as_name'>{{ {'bjl':t("table.b_ask"), 'lh':t("table.d_ask")}[gameStore.gameType] || '--' }}</view>
       <view class='ro_ac_as_circle'>
         <view class='ro_ac_as_ci_view'><template v-if='gameStore.askPointZhuang[0]'><DewBase64 :name='gameStore.askPointZhuang[0]' :key='gameStore.askPointZhuang[0]' /></template></view>
         <view class='ro_ac_as_ci_view'><template v-if='gameStore.askPointZhuang[1]'><DewBase64 :name='gameStore.askPointZhuang[1]' :key='gameStore.askPointZhuang[1]' /></template></view>
         <view class='ro_ac_as_ci_view'><template v-if='gameStore.askPointZhuang[2]'><DewBase64 :name='gameStore.askPointZhuang[2]' :key='gameStore.askPointZhuang[2]' /></template></view>
       </view>
-      <view class='ro_ac_as_name'>{{ {'bjl':t("table.b_ask"), 'lh':t("table.d_ask")}[gameStore.gameType] || '--' }}</view>
     </view>
 
     <view class='ro_ac_ask' data-ident='xian' :data-str='{"bjl":"闲赢,大", "lh":"虎赢,大"}[gameStore.gameType]' @tap='_bindAsk'>
+      <view class='ro_ac_as_name'>{{ {'bjl':t("table.p_ask"), 'lh':t("table.t_ask")}[gameStore.gameType] || '--' }}</view>
       <view class='ro_ac_as_circle'>
         <view class='ro_ac_as_ci_view'><template v-if='gameStore.askPointXian[0]'><DewBase64 :name='gameStore.askPointXian[0]' :key='gameStore.askPointXian[0]' /></template></view>
         <view class='ro_ac_as_ci_view'><template v-if='gameStore.askPointXian[1]'><DewBase64 :name='gameStore.askPointXian[1]' :key='gameStore.askPointXian[1]' /></template></view>
         <view class='ro_ac_as_ci_view'><template v-if='gameStore.askPointXian[2]'><DewBase64 :name='gameStore.askPointXian[2]' :key='gameStore.askPointXian[2]' /></template></view>
       </view>
-      <view class='ro_ac_as_name'>{{ {'bjl':t("table.p_ask"), 'lh':t("table.t_ask")}[gameStore.gameType] || '--' }}</view>
     </view>
 
     <view class='ro_ac_view' @tap='_bindGood'>
@@ -51,6 +52,14 @@ import { useGameStore } from '@front/stores/modules/game.store';
 import { EventEmitter, } from '@front/eventBus/index';
 import { VOICE_SEND, } from '@front/eventBus/actions';
 import { useI18n } from "vue-i18n";
+import totalImg from '@front/assets/lobby/all.png';
+import bankerImg from '@front/assets/lobby/banker.png';
+import playerImg from '@front/assets/lobby/player.png';
+import dragonImg from '@front/assets/lobby/dragon.png';
+import tigerImg from '@front/assets/lobby/tiger.png';
+import tieImg from '@front/assets/lobby/tie.png';
+import bPairImg from '@front/assets/lobby/bPair.png';
+import pPairImg from '@front/assets/lobby/pPair.png';
 import { useUserStore } from '@front/stores/modules/user.store';
 const { t } = useI18n();
 // #ifdef APP-PLUS
@@ -68,20 +77,20 @@ const _askZhunagLoading = ref(false),
         return (
           gameStore.gameType === 'bjl'
             ? [
-                { ident:'total', name:'总', value:()=> isNaN(gameStore.roundInfo.totalNum) ? '--' : gameStore.roundInfo.totalNum, },
-                { ident:'zhuang', name:'庄', value:()=> isNaN(gameStore.roundInfo.zhuangNum) ? '--' : gameStore.roundInfo.zhuangNum, },
-                { ident:'xian', name:'闲', value:()=> isNaN(gameStore.roundInfo.xianNum) ? '--' : gameStore.roundInfo.xianNum, },
-                { ident:'he', name:'和', value:()=> isNaN(gameStore.roundInfo.heNum) ? '--' : gameStore.roundInfo.heNum, },
-                { ident:'zhuangdui', name:'庄对', value:()=> isNaN(gameStore.roundInfo.zhuangDuiNum) ? '--' : gameStore.roundInfo.zhuangDuiNum, },
-                { ident:'xiandui', name:'闲对', value:()=> isNaN(gameStore.roundInfo.xianDuiNum) ? '--' : gameStore.roundInfo.xianDuiNum, },
+                { img:totalImg, ident:'total', name:'总', value:()=> isNaN(gameStore.roundInfo.totalNum) ? '--' : gameStore.roundInfo.totalNum, },
+                { img:bankerImg, ident:'zhuang', name:'庄', value:()=> isNaN(gameStore.roundInfo.zhuangNum) ? '--' : gameStore.roundInfo.zhuangNum, },
+                { img:playerImg, ident:'xian', name:'闲', value:()=> isNaN(gameStore.roundInfo.xianNum) ? '--' : gameStore.roundInfo.xianNum, },
+                { img:tieImg, ident:'he', name:'和', value:()=> isNaN(gameStore.roundInfo.heNum) ? '--' : gameStore.roundInfo.heNum, },
+                { img:bPairImg, ident:'zhuangdui', name:'庄对', value:()=> isNaN(gameStore.roundInfo.zhuangDuiNum) ? '--' : gameStore.roundInfo.zhuangDuiNum, },
+                { img:pPairImg, ident:'xiandui', name:'闲对', value:()=> isNaN(gameStore.roundInfo.xianDuiNum) ? '--' : gameStore.roundInfo.xianDuiNum, },
               ]
             :
           gameStore.gameType === 'lh'
             ? [
-                { ident:'total', name:'总', value:()=> isNaN(gameStore.roundInfo.totalNum) ? '--' : gameStore.roundInfo.totalNum, },
-                { ident:'long', name:'龙', value:()=> isNaN(gameStore.roundInfo.longNum) ? '--' : gameStore.roundInfo.longNum, },
-                { ident:'hu', name:'虎', value:()=> isNaN(gameStore.roundInfo.huNum) ? '--' : gameStore.roundInfo.huNum, },
-                { ident:'he', name:'和', value:()=> isNaN(gameStore.roundInfo.heNum) ? '--' : gameStore.roundInfo.heNum, },
+                { img:totalImg,ident:'total', name:'总', value:()=> isNaN(gameStore.roundInfo.totalNum) ? '--' : gameStore.roundInfo.totalNum, },
+                { img:dragonImg,ident:'long', name:'龙', value:()=> isNaN(gameStore.roundInfo.longNum) ? '--' : gameStore.roundInfo.longNum, },
+                { img:tigerImg,ident:'hu', name:'虎', value:()=> isNaN(gameStore.roundInfo.huNum) ? '--' : gameStore.roundInfo.huNum, },
+                { img:tieImg,ident:'he', name:'和', value:()=> isNaN(gameStore.roundInfo.heNum) ? '--' : gameStore.roundInfo.heNum, },
               ]
             :
           ''

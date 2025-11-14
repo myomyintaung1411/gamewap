@@ -4,7 +4,7 @@
   <view class='ta_view' data-ident='back' @tap='_bindAction'>
     <!-- <SvgIcon class='ta_vi_icon' name='game-table-back-white' /> -->
     <SvgIcon class='ta_vi_icon' name='back' />
-    <view class='ta_vi_name'>{{t("table.return")}}</view>
+    <!-- <view class='ta_vi_name'>{{t("table.return")}}</view> -->
     <!-- <view class='ta_vi_name'>返回</view> -->
   </view>
 

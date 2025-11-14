@@ -1,7 +1,7 @@
 <template>
 <view>
 
-  <view class='sd_model' @tap='_bindSwitchDesk'>
+  <view class='sd_model_switch' @tap='_bindSwitchDesk'>
     <view class='sd_text'>{{t("table.switch_game_open")}}</view>
   </view>
 

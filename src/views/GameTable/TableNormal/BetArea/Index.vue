@@ -45,7 +45,7 @@
 
     </template>
   </view>
-
+   <ChipsArea />
   <view class='ba_action'>
     <TheButton
       class='ba_ac_view _affirm'
@@ -56,8 +56,9 @@
       :loading='operaStore.loading.submitWaitBet'
       :taps='_bindAffirm'
     >
-      <SvgIcon class='ba_ac_vi_icon' name='game-table-bet-affirm' />
-      <view class='ba_ac_vi_name'>{{t("poker.confirm")}}</view>
+     <img :src="confirmBtn" alt="confirm" class="ba_ac_vi_icon" />
+      <!-- <SvgIcon class='ba_ac_vi_icon' name='game-table-bet-affirm' /> -->
+      <!-- <view class='ba_ac_vi_name'>{{t("poker.confirm")}}</view> -->
     </TheButton>
 
     <TheButton
@@ -69,8 +70,11 @@
       :loading='operaStore.loading.cancelIsAffirmBet'
       :taps='_bindCancel'
     >
-      <SvgIcon class='ba_ac_vi_icon' name='game-table-bet-revoke' />
-      <view class='ba_ac_vi_name'>{{t("poker.revoke")}}</view>
+     <img :src="revokeBtn" alt="confirm" class="ba_ac_vi_icon" />
+         
+
+      <!-- <SvgIcon class='ba_ac_vi_icon' name='game-table-bet-revoke' /> -->
+      <!-- <view class='ba_ac_vi_name'>{{t("poker.revoke")}}</view> -->
     </TheButton>
 
     <TheButton
@@ -81,8 +85,10 @@
       )'
       :taps='_bindRevoke'
     >
-      <SvgIcon class='ba_ac_vi_icon' name='game-table-bet-cancel' />
-      <view class='ba_ac_vi_name'>{{t("poker.cancel")}}</view>
+         <img :src="cancelBtn" alt="confirm" class="ba_ac_vi_icon" />
+
+      <!-- <SvgIcon class='ba_ac_vi_icon' name='game-table-bet-cancel' /> -->
+      <!-- <view class='ba_ac_vi_name'>{{t("poker.cancel")}}</view> -->
     </TheButton>
   </view>
 
@@ -98,7 +104,10 @@ import { EventEmitter, } from '@front/eventBus/index';
 import { VOICE_SEND, } from '@front/eventBus/actions';
 import { nativeDefineAsyncComponent } from '@front/utils/replaceUniNative';
 import { useI18n } from "vue-i18n";
-
+import ChipsArea from '../ChipsArea.vue';
+import confirmBtn from '@front/assets/tablenormal/confirm.png';
+import revokeBtn from '@front/assets/tablenormal/revoke.png';
+import cancelBtn from '@front/assets/tablenormal/cancel.png';
 const { t } = useI18n();
 // #ifdef APP-PLUS
   import ViewBjlStyleA from './ViewBjlStyleA.vue';

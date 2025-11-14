@@ -8,28 +8,30 @@
 
   <!-- <view class='vo_ask _view' data-ident='zhunag' :data-str='{"bjl":"庄赢,大", "lh":"龙赢,大"}[gameStore.gameType]' @tap='_bindAsk'> -->
   <view class='vo_ask _view' @tap='_bindBatchAskZhuang'>
+        <view class='vo_as_name'>{{t("table.b_ask")}}</view>
+
     <view class='vo_as_circle'>
       <view class='vo_as_ci_view'><DewBase64 :name='"xiaoluhongse"' /></view>
       <view class='vo_as_ci_view'><DewBase64 :name='"da-lu-zhuang-ying-"' /></view>
       <view class='vo_as_ci_view'><DewBase64 :name='"xiaoqiangluhongse"' /></view>
     </view>
     <!-- <view class='vo_as_name'>{{ {'bjl':'庄问路', 'lh':'龙问路'}[gameStore.gameType] || '--' }}</view> -->
-    <view class='vo_as_name'>{{t("table.b_ask")}}</view>
   </view>
 
   <!-- <view class='vo_ask _view' data-ident='xian' :data-str='{"bjl":"闲赢,大", "lh":"虎赢,大"}[gameStore.gameType]' @tap='_bindAsk'> -->
   <view class='vo_ask _view' @tap='_bindBatchAskXian'>
+        <view class='vo_as_name'>{{t("table.p_ask")}}</view>
     <view class='vo_as_circle'>
       <view class='vo_as_ci_view'><DewBase64 :name='"xiaolulanse"' /></view>
       <view class='vo_as_ci_view'><DewBase64 :name='"da-lu-xian-ying-"' /></view>
       <view class='vo_as_ci_view'><DewBase64 :name='"xiaoqianglulanse"' /></view>
     </view>
     <!-- <view class='vo_as_name'>{{ {'bjl':'闲问路', 'lh':'虎问路'}[gameStore.gameType] || '--' }}</view> -->
-    <view class='vo_as_name'>{{t("table.p_ask")}}</view>
   </view>
 
   <view class='vo_view _view _size01' data-ident='route-type' @tap='_bindAction'>
-    <SvgIcon class='vo_vi_icon' name='table-multi-opera-chip-setting' />
+    <!-- <SvgIcon class='vo_vi_icon' name='table-multi-opera-chip-setting' /> -->
+     <img src="@/assets/sidebar/setting.png" alt="" class="vo_vi_icon">
     <view class='vo_vi_name'>{{t("table.road")}}</view>
   </view>
 
@@ -44,7 +46,8 @@
   </view> -->
 
   <view class='vo_view _view' data-ident='good-desk' @tap='_bindAction'>
-    <SvgIcon class='vo_vi_icon' name='route-opera-good-deep' />
+    <!-- <SvgIcon class='vo_vi_icon' name='route-opera-good' /> -->
+      <img src="@/assets/sidebar/multi.png" alt="" class="vo_vi_icon">
     <view class='vo_vi_name'>{{t("table.good")}}</view>
   </view>
 

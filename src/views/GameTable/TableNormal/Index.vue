@@ -19,7 +19,7 @@
 
 
   <view class='tn_poker'>
-    <ChipsArea />
+    <!-- <ChipsArea /> -->
 
     <RouteOpera />
 

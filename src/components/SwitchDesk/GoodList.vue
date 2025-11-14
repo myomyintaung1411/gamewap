@@ -24,9 +24,16 @@
             </view>
 
             <view class='gl_ca_ti_time'>
-              <SvgIcon class='gl_ca_ti_ti_icon' name='lobby-desk-lock' size='13' />
+                <img v-if="item?.timming?.value > 10" src="@/assets/lobby/time1.png" alt=""
+									class='gl_ca_ti_ti_icon'>
+								<img v-else src="@/assets/lobby/time2.png" alt="" class='gl_ca_ti_ti_icon'>
+
+              <!-- <SvgIcon class='gl_ca_ti_ti_icon' name='lobby-desk-lock' size='13' /> -->
               <template v-if='["timing"].includes(item.gameStatus)'>
-                <view class='gl_ca_ti_ti_ic_num'>{{isNaN(item.timming.value) ? '-' : item.timming.value}}</view>
+                <view :class="{
+										'time-high': item?.timming?.value > 10,
+										'time-low': item?.timming?.value <= 10
+									}" class='gl_ca_ti_ti_ic_num'>{{isNaN(item.timming.value) ? '-' : item.timming.value}}</view>
               </template>
               <template v-else>
                 <view class='gl_ca_ti_ti_ic_text'>{{t(MATCH_GAME_STATUS_NAME[item.gameStatus] || 'time_status.unknown')}}</view>

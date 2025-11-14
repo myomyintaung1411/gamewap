@@ -6,11 +6,15 @@
 }
 
 .cs_model {
-  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-withdraw-apply.png'));
+  background-color: #305674;
+  // .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-withdraw-apply.png'));
   width:80%;
-  position:fixed; top:300rpx; left:10%;
+  position:fixed;
+  top:300rpx;
+    transform: translateX(-50%);
+      left: 50%;
   .box-sizing(); padding:0 0 20rpx 0;
-  z-index:210;
+  z-index:200;
   // transform:translateX(100%);
   // animation:_modelShow .2s forwards ease-in-out;
 }
@@ -87,13 +91,14 @@
   .flex(inline-flex, center);
 }
   .cs_ac_button {
-    background:@bg-gradient01;
+    //background:@bg-gradient01;
     margin:0 40rpx;
     .box-sizing(); padding:12rpx 40rpx;
     border-color:@border-color-red-shallow;
     border-radius:40rpx;
+    background-color: #1ea7dd;
 
     &:hover {
-      background:@bg-gradient01;
+      //background:@bg-gradient01;
     }
   }

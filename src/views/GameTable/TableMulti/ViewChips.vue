@@ -1,16 +1,20 @@
 <template>
 <view class='vc_model'>
 
-  <view class='vc_opera' data-opera='last' @tap='_bindSwitchChip'>
+
+
+  <!-- <view class='vc_li_view _normal' @tap=''> -->
+  <view class='vc_view _normal' @tap='goBack'>
+    <!-- <SvgIcon class='vc_vi_fill' name='chip-setting' /> -->
+    <img src="@/assets/multi/back.png" alt="chip-setting" class="vc_vi_fill">
+  </view>
+
+    <view class='vc_opera' data-opera='last' @tap='_bindSwitchChip'>
+      
     <SvgIcon class='vc_op_icon' name='game-table-chips-last' />
   </view>
 
-  <!-- <view class='vc_li_view _normal' @tap=''> -->
-  <!-- <view class='vc_view _normal' @tap='_bindChipsSetting'>
-    <SvgIcon class='vc_vi_fill' name='chip-setting' />
-  </view> -->
-
-  <view
+  <!-- <view
     :class='["vc_li_view", "chip-allIn" === operaStore.chipsBjlEd ? "_bright" : "_normal",]'
     @tap='(
       gameStore.gameStatus === "timing"
@@ -21,7 +25,7 @@
     <SvgIcon class='vc_li_vi_fill' :name='"chip-allIn"' />
 
     <image class='vc_li_vi_bright' :src=' userStore.getImageBase + "chip-select-bright.png"' />
-  </view>
+  </view> -->
 
   <swiper
     class='vc_list'
@@ -62,12 +66,17 @@
     <SvgIcon class='vc_op_icon' name='game-table-chips-next' />
   </view>
 
+    <view class='vc_view _normal' >
+    <img src="@/assets/tablenormal/Ratio.png" alt="chip-setting" class="vc_vi_fill">
+  </view>
+
   <PerfComponent :componentUrl='PCompChipsSetting' ref='_vChipsSetting' />
 
 </view>
 </template>
 <script setup name='ViewChips'>
 import { ref, computed, inject } from 'vue';
+import router from '@front/routers';
 import PerfComponent from '@front/components/PerfComponent.vue';
 import { useOperaStore } from '@front/stores/modules/opera.store';
 import { useGameStore } from '@front/stores/modules/game.store';
@@ -103,6 +112,10 @@ const _chipsUseList = inject('chipsUseList'),
 
 function _bindChipsSetting() {
   _vChipsSetting.value.showChange();
+}
+
+function goBack (){
+   router.replace('/views/Lobby/Index');
 }
 
 function _bindSwitchChip(event) {

@@ -1,50 +1,32 @@
 <template>
   <view v-if="_show" class="popup-container">
-    <view class="popup-show-left" v-if="_show" @click="_bindClose"></view>
-     <view class="popup-show-right" v-if='_show'>
-      <!-- <view class='tip_mask' @tap='_bindClose' @touchmove.stop.prevent='_moveHandle'></view> -->
-    <view @click.stop class="popup-content"
-     
-    >
-      <view class='sp_ph'></view>
-        <!-- <view class="tryitplay-head">
-          <view class="tryitplay-he_name">{{ t('login.title') }}</view>
-           <SvgIcon class='tip_close' name='popup-close' @tap='_bindClose' />
-        </view>
+    <!-- backdrop -->
+    <view class="overlay" @click="_bindClose"></view>
 
-      <view class="lang_form">
+    <!-- centered dialog -->
+    <view class="popup-card" @click.stop>
+      <view class="dialog-header">
+        <text class="dialog-title">{{ t('login.title') }}</text>
+        <SvgIcon class="tip_close" name="popup-close" @tap="_bindClose" />
+      </view>
+
+      <view class="lang_list">
         <view
           v-for="item in lang_ref"
           :key="item.value"
           class="lang_option"
           :class="{ active: radio1 === item.value }"
-         @click="selectLang(item)"
+          @click="selectLang(item)"
         >
+          <!-- hide flags to match the first image -->
           <image :src="item.image" class="lang_img" />
-          <span class="lang_text">{{ t(item.text) }}</span>
+          <text class="lang_text">{{ t(item.text) }}</text>
         </view>
-      </view> -->
-
-      <view class="tryitplay-head">
-          <view class="tryitplay-he_name">{{ t('login.title') }}</view>
-           <SvgIcon class='tip_close' name='popup-close' @tap='_bindClose' />
-        </view>
-         <view class="lang_form">
-        <view
-          v-for="item in lang_ref"
-          :key="item.value"
-          class="lang_option"
-          :class="{ active: radio1 === item.value }"
-         @click="selectLang(item)"
-        >
-          <image :src="item.image" class="lang_img" />
-          <span class="lang_text">{{ t(item.text) }}</span>
-        </view>
-      </view> 
-    </view>
+      </view>
     </view>
   </view>
 </template>
+
 
 <script setup name="ChangeLang">
 import { ref } from 'vue'
@@ -91,111 +73,106 @@ function _bindClose() {
 </script>
 
 <style lang="less" scoped>
+/* container + backdrop */
 .popup-container {
-  width: 100%;
-  height: 100%;
-  // overflow: hidden;
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-   z-index: 100;
+  inset: 0;
+  z-index: 100;
 }
-.popup-show-left {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 200;
-  // background-color: rgba(53, 51, 51, 0.6); /* 半透明遮罩层 */
-}
-.sp_ph {
-  width:100%; height:var(--status-bar-height);
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
 }
 
-.popup-show-right {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 210;
-  background: linear-gradient(to right, #1c1a20, 60%, #60636b);
-  // background-color: rgb(18, 17, 17); /* 半透明遮罩层 */
-  /* background-color: rgba(0, 0, 0, 0.5);  */
-  transform:translateX(100%);
-  animation:_modelShow .2s forwards ease-in-out;
+/* dialog */
+.popup-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(.96);
+  width: 640rpx;              /* ~320px on phone */
+  max-width: 86%;
+  background: #363f45;        /* dark card like screenshot */
+  border-radius: 20rpx;
+  box-shadow: 0 12rpx 40rpx rgba(0,0,0,.35);
+  //padding: 28rpx 28rpx 36rpx;
+  padding: 36rpx;
+  animation: zoomIn .16s ease-out forwards;
 }
-  @keyframes _modelShow
-    {
-      from { transform:translateX(100%); }
-      to { transform:translateX(0); }
-    }
+@keyframes zoomIn {
+  to { transform: translate(-50%, -50%) scale(1); }
+}
 
-    .tryitplay-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20rpx 10rpx;
-  }
-
-  .tryitplay-he_name {
-    font-size: 16px;
-    font-weight: bold;
-  }
-
+/* header */
+.dialog-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 12rpx;
+}
+.dialog-title {
+  font-size: 30rpx;
+  color: #e9eef3;
+  font-weight: 600;
+  letter-spacing: .5rpx;
+}
 .tip_close {
-  width:40rpx; height:40rpx;
-  // position:absolute; top:20rpx; right:20rpx;
+  position: absolute;
+  right: 0;
+  top: -4rpx;
+  width: 40rpx;
+  height: 40rpx;
+  opacity: .9;
 }
 
-.lang_form {
-  padding: 40rpx 15rpx;
+/* list */
+.lang_list {
+  margin-top: 28rpx;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18rpx;
 }
 
+/* pill buttons */
 .lang_option {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid var(--el-border-color);
-  border-radius: 8px;
-  padding: 10px 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: #fff;
+  justify-content: center;
+  gap: 20rpx;
+  width: 500rpx;
+  margin: 0 auto;
+  height: 68rpx;
+  border-radius: 12rpx;
+  background: #ffffff;
+  border: 2rpx solid #e6e8eb;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.lang_option:active { transform: scale(.99); }
+
+/* active = blue gradient pill */
+.lang_option.active {
+  background: linear-gradient(180deg, #0a94b5 0%, #0b81b9 100%);
+  border-color: transparent;
+  box-shadow: inset 0 -6rpx 12rpx rgba(0,0,0,.12);
+}
+.lang_option .lang_text {
+  font-size: 28rpx;
+  font-weight: 600;
   color: #333;
-
-  &:hover {
-    border-color: var(--el-color-primary);
-  }
-
-  &.active {
-    background: #ddcd94; /* selected background */
-    color: #333; /* selected text */
-    border-color: #ddcd94;
-  }
+}
+.lang_option.active .lang_text {
+  color: #fff;
 }
 
-.lang_img {
-  width: 24px;
-  height: 24px;
+/* hide flag images to match first image; keep in DOM for future use */
+.lang_img {  width: 38rpx; height: 38rpx; }
 
-}
-
-.lang_text {
-  font-size: 14px;
-  font-weight: 500;
-}
-.tip_mask {
-  /* .bg-mask(.6); */
-  width:100%; height:100vh;
-  position:fixed; top:0; right:0;
-  z-index:200;
-}
-
+/* (legacy classes neutralized so they don't affect layout) */
+.popup-show-left,
+.popup-show-right,
+.sp_ph,
+.tryitplay-head,
+.tryitplay-he_name { display: none; }
 </style>

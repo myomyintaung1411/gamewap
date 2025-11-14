@@ -9,63 +9,73 @@
 
 .dn_model {
   background-color: #292d38;
-  //.bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-lobby-title.png'));
-  width:calc(100%); 
-  margin:0 auto;
+  width: 100%;
+  margin: 0 auto;
   .box-sizing();
-   padding:6rpx 0 12rpx 0;
+  padding: 20rpx 20rpx;
 }
 
-.dn_title {
-  width:100%;
-  .flex(flex);
+.dn_navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #f5e6c2;
+  font-size: 28rpx;
 }
-  .dn_ti_logo {
-    width:520rpx; height:110rpx;
-  }
-    .dn_ti_lo_fill {
-      width:100%; height:100%;
-    }
-  .dn_ti_action {
-    .flex(inline-flex, flex-end); flex:1;
-    .box-sizing(); padding:36rpx 20rpx 0 0;
-  }
-    .dn_ti_ac_view {
-      width:40rpx; height:40rpx; margin:0 30rpx 0 0;
 
-      &:last-child {
-        margin-right:0;
-      }
-    }
-      .dn_ti_ac_vi_fill {
-        width:100%; height:100%;
-      }
-
-.dn_info {
-  width:100%;
-  .flex(flex);
-  .box-sizing(); padding:0 20rpx 0 60rpx;
+.dn_navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
 }
-  .dn_in_ph01 {
-    flex:1;
-  }
-  .dn_in_view {
-    width:36%; height:40rpx; margin:0 50rpx 0 0;
-    .flex(inline-flex, false, center);
 
-    &:nth-child(2) {
-      margin-right:0;
-    }
-  }
-    .dn_in_vi_icon {
-      width:30rpx; height:30rpx; margin:4rpx 14rpx 0 0;
-    }
-    .dn_in_vi_name {
-      font-size:@font-14; .color-gradient07(); line-height:1;
-    }
-  .dn_in_btn {
-    width:40rpx; height:40rpx;
-  }
-    .dn_in_bt_fill {
-      width:100%; height:100%;
-    }
+.dn_navbar__logo-img {
+  height: 80rpx;
+}
+
+.dn_navbar__logo-text {
+  font-weight: 600;
+  letter-spacing: 4rpx;
+}
+
+.dn_navbar__info {
+  display: flex;
+  align-items: center;
+  gap: 30rpx;
+  color: #fff;
+}
+
+.dn_navbar__info-item {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.dn_navbar__info-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.dn_navbar__info-text {
+  font-size: 26rpx;
+}
+
+.dn_navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.dn_navbar__action {
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dn_navbar__action-icon {
+  width: 32rpx;
+  height: 32rpx;
+}

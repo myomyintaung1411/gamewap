@@ -1,7 +1,7 @@
 <template>
 <div class='ps_box'>
 
-  <DewCanvas ident='PanelSecond' :boxItemWidth='12' :dewItemWidth='12' :backColNum='2' :pointColumn='2' :list='list' />
+  <DewCanvas ident='PanelSecond' :boxItemWidth='18' :dewItemWidth='18' :backColNum='2' :pointColumn='2' :list='list' />
 
 </div>
 </template>

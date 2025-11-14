@@ -69,6 +69,12 @@
 				// "navigationBarTitleText": "交易流水",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "views/Record/Index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

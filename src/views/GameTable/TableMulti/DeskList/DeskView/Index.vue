@@ -107,10 +107,14 @@
         )'
         :key='item.id'
       >
-        <view :class='["dv_le_to_view", `_ident-${item.ident}`]'>
-          <view class='dv_le_to_vi_point'></view>
-          <view class='dv_le_to_vi_value'>{{item.value()}}</view>
-        </view>
+      <view :class="['dv_le_to_view', `_ident-${item.ident}`]">
+        <image
+          class="dv_le_to_icon"
+          :src="getDeskIcon(item.ident)"
+          mode="aspectFit"
+        />
+        <view class="dv_le_to_vi_value">{{ item.value() }}</view>
+      </view>
       </template>
     </view>
 
@@ -150,7 +154,7 @@
         :taps='_bindAction.bind(null, "affirm")'
       >
         <!-- <SvgIcon class='dv_ri_ac_vi_icon' name='table-multi-bet-affirm' /> -->
-        <image class='img-normal' :src='userStore.getImageBase + "btns/btn-table-multi-bet-affirm.png"' />
+        <image class='img-normal' :src='confirmBtn' />
       </TheButton>
 
       <TheButton
@@ -160,7 +164,7 @@
         :taps='_bindAction.bind(null, "cancel")'
       >
         <!-- <SvgIcon class='dv_ri_ac_vi_icon' name='table-multi-bet-revoke' /> -->
-        <image class='img-normal' :src='userStore.getImageBase + "btns/btn-table-multi-bet-revoke.png"' />
+        <image class='img-normal' :src='revokeBtn' />
       </TheButton>
 
       <TheButton
@@ -169,7 +173,7 @@
         :taps='_bindAction.bind(null, "revoke")'
       >
         <!-- <SvgIcon class='dv_ri_ac_vi_icon' name='table-multi-bet-cancel' /> -->
-        <image class='img-normal' :src='userStore.getImageBase + "btns/btn-table-multi-bet-cancel.png"' />
+        <image class='img-normal' :src='cancelBtn' />
       </TheButton>
     </view>
 
@@ -181,6 +185,17 @@
 import { ref, computed, provide, inject, /*defineAsyncComponent*/ } from 'vue';
 import TheButton from '@front/components/TheButton/Index.vue';
 import PanelSecond from './PanelSecond.vue';
+import confirmBtn from '@front/assets/multi/confirm.png'
+import cancelBtn from '@front/assets/multi/cancel.png'
+import revokeBtn from '@front/assets/multi/revoke.png'
+import totalImg from '@front/assets/lobby/all.png';
+import bankerImg from '@front/assets/lobby/banker.png';
+import playerImg from '@front/assets/lobby/player.png';
+import dragonImg from '@front/assets/lobby/dragon.png';
+import tigerImg from '@front/assets/lobby/tiger.png';
+import tieImg from '@front/assets/lobby/tie.png';
+import bPairImg from '@front/assets/lobby/bPair.png';
+import pPairImg from '@front/assets/lobby/pPair.png';
 // import PanelOther from './PanelOther.vue';
 // import ViewBjlStyleA from './ViewBjlStyleA.vue';
 // import ViewBjlStyleB from './ViewBjlStyleB.vue';
@@ -260,6 +275,26 @@ const _deskItem = computed(()=> (
 ;
 provide('deskItem', _deskItem);
 provide('isNotCommission', _isNotCommission);
+
+// map local idents -> actual icons
+const DV_ICONS = {
+  total: totalImg,
+
+  // bjl
+  zhuang: bankerImg,
+  xian: playerImg,
+  he: tieImg,
+  zhuangdui: bPairImg,
+  xiandui: pPairImg,
+
+  // lh
+  long: dragonImg,
+  hu: tigerImg,
+};
+
+function getDeskIcon(ident) {
+  return DV_ICONS[ident] || totalImg; // fallback
+}
 
 function _changeIsNotCommission(value) {
   _isNotCommission.value = value;

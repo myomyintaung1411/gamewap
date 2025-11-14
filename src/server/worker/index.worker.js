@@ -77,6 +77,7 @@ function _wsReceiveMessage(type, data) {
   if (!_listenMapAide.has(_type)) return;
 
   if (_type === 'stageInfo') {
+    console.log('stageInfo', JSON.parse(JSON.stringify(_data)));
     _data.code === 0 && (
       _data.data = DtGame.stageInfo(_data.data)
     )
@@ -87,6 +88,7 @@ function _wsReceiveMessage(type, data) {
       _data,
     ])
   } else if (_type === 'stageList') {
+    console.log('stageList', JSON.parse(JSON.stringify(_data)));
     _data.code === 0 && (
       _data.data.list = _data.data.list.map(f=> DtGame.stageList(f))
     )

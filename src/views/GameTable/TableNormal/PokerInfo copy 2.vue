@@ -12,7 +12,7 @@
         <div class='pi_ti_vi_value'>{{ ({ bjl:gameStore.pokerInfo.bjlXianTotal, lh:gameStore.pokerInfo.lhLongTotal })[gameStore.gameType] || 0 }}</div>
       </div>
 
-      <div :class='["pi_ti_view _right", `_type_${gameStore.gameType}`]'>
+      <div :class='["pi_ti_view _right ", `_type_${gameStore.gameType}`]'>
         <div class='pi_ti_vi_value'>{{ ({ bjl:gameStore.pokerInfo.bjlZhuangTotal, lh:gameStore.pokerInfo.lhHuTotal })[gameStore.gameType] || 0 }}</div>
         <div class='pi_ti_vi_name'>{{ ({ bjl:t("bjl.zhuang"), lh:t("lh.hu")})[gameStore.gameType] || '--' }}</div>
       </div>

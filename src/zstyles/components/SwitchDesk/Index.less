@@ -5,7 +5,7 @@
   z-index:200;
 }
 
-.sd_model {
+.sd_model_ {
   .bg-mask(.98);
   width:76%; /* height:100vh; */
   overflow-y:scroll;
@@ -14,7 +14,8 @@
   z-index:210;
   transform:translateX(100%);
   animation:_modelShow .2s forwards ease-in-out;
-  background: linear-gradient(to right, #1c1a20, 60%, #60636b);
+  background-color: #364149;
+  //background: linear-gradient(to right, #1c1a20, 60%, #60636b);
 }
   @keyframes _modelShow
     {
@@ -32,23 +33,27 @@
 }
 
 .sd_card {
-  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-view.png'));
-  width:calc(100% - 30rpx); margin:0 0 6rpx 20rpx;
-  .box-sizing(); padding:6rpx 16rpx 16rpx 16rpx;
+    background-color: #03557e;
+    //  border: 1px solid #088cb7;
+    // border-radius: 10rpx;
+  .bg-img(url('@/assets/lobby/bgdesk.png'));
+  width:calc(100% - 30rpx); margin:0rpx 0 6rpx 20rpx;
+  .box-sizing(); padding:0rpx 16rpx 16rpx 16rpx;
 }
   .sd_ca_title {
-    widith:100%; margin:0 0 6rpx 0;
+    width:100%; margin:20rpx 0 0rpx 0;
+    // background-color: red;
     .flex(flex, space-between, flex-end);
   }
     .sd_ca_ti_name {
-      font-size:26rpx;
+      font-size:22rpx;
       .flex(inline-flex);
     }
       .sd_ca_ti_na_text {
-        margin:0 20rpx 0 0;
+        margin:5rpx 68rpx 0 0;
       }
       .sd_ca_ti_na_round {
-        font-size:@font-12; margin:2rpx 0 0 0;
+        font-size:@font-12; margin:0rpx 0 0 0;
         opacity:.6;
       }
       .sd_ca_ti_na_prompt {
@@ -61,19 +66,30 @@
     }
       .sd_ca_ti_ti_icon {
         margin:0 8rpx 0 0;
+        width: 25rpx;
+        height: 25rpx;
       }
       .sd_ca_ti_ti_ic_num {
-        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        /* height:52rpx; */ font-size:22rpx; ;
         .flex(inline-flex, false, center);
         .overflow();
       }
+                /* 🔵 when > 10 */
+    .time-high {
+      color: #3acfa4;   // greenish color
+    }
+
+    /* 🔴 when ≤ 10 */
+    .time-low {
+      color: #c14d49;   // reddish color
+    }
       .sd_ca_ti_ti_ic_text {
-        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        /* height:52rpx; */ font-size:22rpx; color:@color-theme;
         .flex(inline-flex, false, center);
         .overflow();
       }
   .sd_ca_dew {
-    width:100%; height:calc(12px * 6);
+    width:100%; height:calc(18px * 6);
     position:relative;
   }
     .sd_ca_de_private {

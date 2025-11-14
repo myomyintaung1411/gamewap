@@ -1,60 +1,69 @@
 <template>
-<view class='ta_model'>
+<div class='dn_box'>
 
-  <view class='ta_view' data-ident='back' @tap='_bindAction'>
-    <SvgIcon class='ta_vi_icon' name='game-table-back-white' />
-    <view class='ta_vi_name'>{{t("table.return")}}</view>
-  </view>
+  <div class='dn_ph01'></div>
 
-  <view class='ta_action'>
+  <div class='dn_model'>
+    <div class="dn_navbar">
+      <div class="dn_navbar__logo">
+        <image class="dn_navbar__logo-img" src="@front/assets/login/logo.png" mode="heightFix" />
+        <!-- <div class="dn_navbar__logo-text">皇家国际</div> -->
+      </div>
 
-    <view class='ta_ac_left'>
-      <view class='ta_ac_le_view'>
-        <SvgIcon class='ta_ac_le_vi_icon' name='user-info-white' />
-      </view>
+      <div class="dn_navbar__info">
+        <div class="dn_navbar__info-item">
+          <image class="dn_navbar__info-icon" :src="personIcon" mode="widthFix" />
+          <span class="dn_navbar__info-text">{{ userStore.userName || '--' }}</span>
+        </div>
+        <div class="dn_navbar__info-item">
+          <image class="dn_navbar__info-icon" :src="serverIcon" mode="widthFix" />
+          <span class="dn_navbar__info-text">{{ userStore.getBalanceStr || '0.00' }}</span>
+          <image class="dn_navbar__info-icon" :src="chipsIcon" mode="widthFix" />
 
-      <view class='ta_ac_le_view'>
-        <view class='ta_ac_le_vi_name'>{{ userStore.getBalanceStr || '--' }}</view>
-      </view>
+        </div>
+      </div>
 
-      <!-- <view class='ta_ac_le_view'>
-        <SvgIcon class='ta_ac_le_vi_icon' name='game-table-record' />
-      </view>
+      <div class="dn_navbar__actions">
+        <div
+          v-if="systemStore.onlineServicesUrl"
+          class="dn_navbar__action"
+          @tap="_clickOnlineService"
+        >
+          <image class="dn_navbar__action-icon" :src="serviceIcon" mode="widthFix" />
+        </div>
+        <div class="dn_navbar__action" @tap="systemStore.setPlayVoiceAuto()">
+          <image
+            class="dn_navbar__action-icon"
+            :src="systemStore.playVoice ? soundIcon : soundOff"
+            mode="widthFix"
+          />
+        </div>
+        <div class="dn_navbar__action" @tap='_clickSidePopup'>
+          <image class="dn_navbar__action-icon" :src="menuIcon" mode="widthFix" />
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <view class='ta_ac_le_view' data-ident='video-verify' @tap='_bindAction'>
-        <SvgIcon class='ta_ac_le_vi_icon' name='game-table-eyes' />
-      </view> -->
-    </view>
+  <PerfComponent :componentUrl='PCompSidePopup' ref='_vSidePopupWindow' />
 
-    <view class='ta_ac_right'>
-      <view class='ta_ac_ri_view' @tap='systemStore.setPlayVoiceAuto()'>
-        <SvgIcon class='ta_ac_ri_vi_icon' :name='systemStore.playVoice ? "game-table-voice-allow-white" : "game-table-voice-disable-white"' />
-      </view>
-
-      <view class='ta_ac_ri_view' data-ident='menu' @tap='_bindAction'>
-        <SvgIcon class='ta_ac_ri_vi_icon' name='game-table-menu-white' />
-      </view>
-    </view>
-
-  </view>
-
-  <view style='width:0; height:0;'>
-    <PerfComponent :componentUrl='PCompSidePopup' ref='_vSidePopupWindow' />
-  </view>
-
-</view>
+</div>
 </template>
-<script setup name='TitleAction'>
+<script setup name='DeskNavbar'>
 import { ref } from 'vue';
+import personIcon from '@front/assets/lobby/person.png';
+import chipsIcon from '@front/assets/lobby/reload.png';
+import serviceIcon from '@front/assets/lobby/service.png';
+import soundIcon from '@front/assets/lobby/sound.png';
+import serverIcon from '@front/assets/lobby/server.png';
+import soundOff from '@front/assets/lobby/sound_off.png'
+import menuIcon from '@front/assets/lobby/menu.png';
 import PerfComponent from '@front/components/PerfComponent.vue';
-import router from '@front/routers';
-import { useSystemStore } from '@front/stores/modules/system.store';
 import { useUserStore } from '@front/stores/modules/user.store';
+import { useSystemStore } from '@front/stores/modules/system.store';
 import { EventEmitter, } from '@front/eventBus/index';
 import { VOICE_SEND, } from '@front/eventBus/actions';
-import { useI18n } from "vue-i18n";
 
-const { t } = useI18n();
 // #ifdef APP-PLUS
   import PCompSidePopup from '@front/components/SidePopup.vue';
 // #endif
@@ -62,25 +71,22 @@ const { t } = useI18n();
   const PCompSidePopup = ()=> import('@front/components/SidePopup.vue');
 // #endif
 
-const systemStore = useSystemStore(),
-      userStore = useUserStore()
+const userStore = useUserStore(),
+      systemStore = useSystemStore()
 ;
 
 const _vSidePopupWindow = ref(null);
 
-function _bindAction(event) {
+function _clickSidePopup() {
   EventEmitter.emit(VOICE_SEND, 'a_room');
+  _vSidePopupWindow.value.showChange();
+}
 
-  const { ident } = event.currentTarget.dataset;
-
-  if (ident === 'back') {
-    router.replace('/views/Lobby/Index');
-
-  } else if (ident === 'menu') {
-    _vSidePopupWindow.value.showChange();
-
-  }
+function _clickOnlineService() {
+  uni.navigateTo({
+    url: '/views/SideContent/OnlineService'
+  })
 }
 
 </script>
-<style lang='less' src='@front/zstyles/views/GameTable/TableMulti/TitleAction.less' scoped></style>
+<style lang='less' src='@front/zstyles/views/Lobby/_view/DeskNavbar.less' scoped></style>

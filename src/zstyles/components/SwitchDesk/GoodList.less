@@ -14,7 +14,7 @@
   z-index:210;
   transform:translateX(100%);
   animation:_modelShow .2s forwards ease-in-out;
-  background: linear-gradient(to right, #1c1a20, 60%, #60636b);
+  background-color: #364149;
 }
   @keyframes _modelShow
     {
@@ -32,9 +32,12 @@
 }
 
 .gl_card {
-  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-view.png'));
+    .bg-img(url('@/assets/lobby/bgdesk.png'));
+    background-color: #03557e;
+
+  // .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-view.png'));
   width:calc(100% - 30rpx); margin:0 0 6rpx 20rpx;
-  .box-sizing(); padding:6rpx 16rpx 16rpx 16rpx;
+  .box-sizing(); padding:0rpx 16rpx 16rpx 16rpx;
   position:relative;
 }
   .gl_ca_title {
@@ -57,19 +60,30 @@
     }
       .gl_ca_ti_ti_icon {
         margin:0 8rpx 0 0;
+        width: 25rpx;
+        height: 25rpx;
       }
       .gl_ca_ti_ti_ic_num {
-        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        /* height:52rpx; */ font-size:22rpx;
         .flex(inline-flex, false, center);
         .overflow();
       }
+                      /* 🔵 when > 10 */
+    .time-high {
+      color: #3acfa4;   // greenish color
+    }
+
+    /* 🔴 when ≤ 10 */
+    .time-low {
+      color: #c14d49;   // reddish color
+    }
       .gl_ca_ti_ti_ic_text {
-        /* height:52rpx; */ font-size:26rpx; color:@color-theme;
+        /* height:52rpx; */ font-size:22rpx; color:@color-theme;
         .flex(inline-flex, false, center);
         .overflow();
       }
   .gl_ca_dew {
-    width:100%; height:calc(12px * 6);
+    width:100%; height:calc(18px * 6);
   }
   .gl_ca_goodTitle {
     font-size:@font-12; font-weight:@font-bold; color:@color-theme;

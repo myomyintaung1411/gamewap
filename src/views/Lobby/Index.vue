@@ -7,9 +7,9 @@
 
 		<DeskNavbar />
 
+		<NoticeBar />
 		<SwitchDeskType />
 
-		<NoticeBar />
 
 		<DeskList />
 

@@ -22,15 +22,28 @@
   
 }
 
-.tn_dew {
-  width:100%;
-  flex-shrink:0;
+// .tn_dew {
+//   width:100%;
+//   flex-shrink:0;
   
+// }
+
+/* Outer green “card” */
+.tn_dew {
+  width: 100%;
+  flex-shrink: 0;
+
+  /* make the round card */
+  border-radius: 24rpx;          /* your 1000rpx is fine too */
+  overflow: hidden;              /* <-- critical */
+  margin: 0 auto;
 }
 
 .tn_betarea {
-  width:100%; max-height:560rpx; margin:0 0 20rpx 0;
+  width:100%; 
+  max-height:560rpx; 
+   margin:0 0 20rpx 0;
   flex:1;
   position: relative;
-  .overflow();
+ // .overflow();
 }

@@ -1,58 +1,65 @@
 <template>
-<view class='ca_model'>
+  <view class="ca_model">
+    <!-- LEFT SETTINGS BUTTON -->
+    <view class="ca_side_btn" @tap="_bindChipSetting">
+      <img src="@/assets/tablenormal/setting.png" alt="chip-setting" class="ca_side_icon" >
+      <!-- <SvgIcon class="ca_side_icon" name="chip-setting" size="40" /> -->
+    </view>
 
-  <view class='ca_opera' data-opera='last' @tap='_bindSwitchChip'>
-    <SvgIcon class='ca_op_icon' name='game-table-chips-last' />
-  </view>
+    <!-- LEFT ARROW -->
+    <view class="ca_opera" data-opera="last" @tap="_bindSwitchChip">
+            <img src="@/assets/tablenormal/lefta.png" alt="game-table-chips-last" class="ca_op_icon" >
+      <!-- <SvgIcon class="ca_op_icon" name="game-table-chips-last" /> -->
+    </view>
 
-  <view
-    :class='["ca_view", "chip-allIn" === operaStore.chipsBjlEd ? "_bright" : "_normal",]'
-    @tap='_bindAction("chip-allIn")'
-  >
-    <SvgIcon class='ca_vi_fill' name='chip-allIn' />
-
-    <image class='ca_vi_bright' :src=' userStore.getImageBase +  "chip-select-bright.png"' />
-  </view>
-
-  <swiper
-    class='ca_list'
-    :display-multiple-items='_useChipList.length < 5 ? 5 : 5' acceleration
-    :current='_currentSwiper'
-  >
-    <template v-for='item in _useChipList' key='ident'>
-      <swiper-item>
+    <!-- CHIP LIST -->
+    <swiper
+      class="ca_list"
+      :display-multiple-items="5"
+      acceleration
+      :current="_currentSwiper"
+    >
+      <!-- real chips -->
+      <swiper-item v-for="item in _useChipList" :key="item.ident">
         <view
-          :class='["ca_li_view", item.ident === operaStore.chipsBjlEd ? "_bright" : "_normal",]'
-          @tap='_bindAction(item.ident)'
+          class="ca_chip"
+          :class="{ _bright: item.ident === operaStore.chipsBjlEd }"
+          @tap="_bindAction(item.ident)"
         >
-          <SvgIcon class='ca_li_vi_fill' :name='item.icon' />
-
-          <image class='ca_li_vi_bright'  :src=' userStore.getImageBase +  "chip-select-bright.png"' />
+          <SvgIcon class="ca_chip_fill" :name="item.icon" />
+          <image
+            class="ca_chip_glow"
+            :src="userStore.getImageBase + 'chip-select-bright.png'"
+            mode="widthFix"
+          />
         </view>
       </swiper-item>
-    </template>
 
-    <swiper-item>
-      <view class='ca_li_view' @tap='_bindChipSetting'>
-        <SvgIcon class='ca_li_vi_fill' name='chip-setting' size='40' />
-      </view>
-    </swiper-item>
-
-    <template v-for='item in (_useChipList.length < 5 ? Array.from({length:(5 - _useChipList.length)}, ()=> "") : [])' key='ident'>
-      <swiper-item>
-        <view class='ca_li_view'></view>
+      <!-- empty slots so center stays like design when <5 chips -->
+      <swiper-item
+        v-for="n in (_useChipList.length < 5 ? 5 - _useChipList.length : 0)"
+        :key="'empty-' + n"
+      >
+        <view class="ca_chip ca_chip--empty"></view>
       </swiper-item>
-    </template>
-  </swiper>
+    </swiper>
 
-  <view class='ca_opera' data-opera='next' @tap='_bindSwitchChip'>
-    <SvgIcon class='ca_op_icon' name='game-table-chips-next' />
+    <!-- RIGHT ARROW -->
+    <view class="ca_opera" data-opera="next" @tap="_bindSwitchChip">
+      <!-- <SvgIcon class="ca_op_icon" name="game-table-chips-next" /> -->
+      <img src="@/assets/tablenormal/righta.png" alt="game-table-chips-next" class="ca_op_icon" >
+    </view>
+
+    <!-- RIGHT SIDE BUTTON (for now gear, later you can put the B badge) -->
+    <view class="ca_side_btn" >
+      <img src="@/assets/tablenormal/Ratio.png" alt="chip-setting" class="ca_side_icon" >
+      <!-- <SvgIcon class="ca_side_icon" name="chip-setting" size="40" /> -->
+    </view>
   </view>
 
-  <PerfComponent :componentUrl='PCompChipsSetting' ref='_vChipsSetting' />
-
-</view>
+  <PerfComponent :componentUrl="PCompChipsSetting" ref="_vChipsSetting" />
 </template>
+
 <script setup name='ChipsArea'>
 import { ref, computed, inject } from 'vue';
 import PerfComponent from '@front/components/PerfComponent.vue';

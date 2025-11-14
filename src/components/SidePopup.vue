@@ -11,15 +11,21 @@
       <view v-for="(item,i) in _listData" :key="i">
         <template v-if='item.show && item.attribute == "changeLanguage"'>
           <view class="popup-style" @click="_clickIcon(item)">
-            <img @click="_bindChangeLang"  :src="lang == 'zh' ? zhImg : enImg " alt="lang" class="popup-icon" style="  width: 48rpx;height: 48rpx;">
-            <!-- <SvgIcon :name='item.icon' class="popup-icon" size='28' /> -->
-            <view class="popup-text">{{ item.name }}</view>
+             <view class="left_sec">
+               <img @click="_bindChangeLang"  :src="lang == 'zh' ? zhImg : enImg " alt="lang" class="popup-icon" style="  width: 48rpx;height: 48rpx;">
+               <view class="popup-text">{{ item.name }}</view>
+             </view>
+             <img :src="arrowImg" :alt="arrowImg" class="right-icon" >
           </view>
         </template>
         <template v-else-if='item.show'>
           <view class="popup-style" @click="_clickIcon(item)">
-            <SvgIcon :name='item.icon' class="popup-icon" size='28' />
-            <view class="popup-text">{{ item.name }}</view>
+            <view class="left_sec">
+              <img :src="item.icon" :alt="item.icon" class="popup-icon" >
+               <view class="popup-text">{{ item.name }}</view>
+            </view>
+             <img v-if="item.attribute !== 'loginout'" :src="arrowImg" :alt="arrowImg" class="right-icon" >
+            <!-- <SvgIcon :name='item.icon' class="popup-icon" size='28' /> -->
           </view>
         </template>
       </view>
@@ -28,6 +34,7 @@
   </view>
 
   <PerfComponent :componentUrl='PCompWithdrawApply' @closeChange='_closePopup' ref='_vWithdrawApply' />
+  <PerfComponent :componentUrl='ChangePassword' @closeChange='_closePopup' ref='_passWordModel' />
   <PerfComponent :componentUrl='PCompGameRule' @closeChange='_closePopup' ref='_vGameRule' />
   <PerfComponent :componentUrl='PCLangChange' @closeChange='_closePopup' ref='_vChangeLang' />
 
@@ -44,15 +51,26 @@ import { VOICE_SEND, } from '@front/eventBus/actions';
 import { useI18n } from "vue-i18n";
 import zhImg from '@front/assets/cn.png';
 import enImg from '@front/assets/us.png';
+import arrowImg from '@front/assets/sidebar/arrow.png';
+import logoutImg from '@front/assets/sidebar/logout.png';
+import ruleImg from '@front/assets/sidebar/rule.png';
+import withdrawImg from '@front/assets/sidebar/withdraw.png';
+import changePassImg from '@front/assets/sidebar/pass.png';
+import serviceImg from '@front/assets/sidebar/service.png';
+import settingImg from '@front/assets/sidebar/setting.png';
+import multiImg from '@front/assets/sidebar/multi.png';
+import recordImg from '@front/assets/sidebar/record.png';
 const { t,locale } = useI18n();
 	locale.value = uni.getStorageSync('l') || 'zh';
 // #ifdef APP-PLUS
   import PCompWithdrawApply from '@front/components/WithdrawApply.vue';
+  import ChangePassword from '@front/components/ChangePassword.vue';
   import PCompGameRule from '@front/components/GameRule.vue';
   import PCLangChange from '@front/components/ChangeLang.vue';
 // #endif
 // #ifndef APP-PLUS
   const PCompWithdrawApply = ()=> import('@front/components/WithdrawApply.vue');
+  const ChangePassword = ()=> import('@front/components/ChangePassword.vue');
   const PCompGameRule = ()=> import('@front/components/GameRule.vue');
   const PCLangChange = ()=> import('@front/components/ChangeLang.vue');
 // #endif
@@ -70,44 +88,45 @@ const _showModal = ref(false),
       _listData = ref([
         {
           name: t("sideList.moredesk"),
-          icon: 'side-popup-more-desk',
+          icon: multiImg,
           attribute: 'more-desk',
           show: true,
         },
         {
           name: t("sideList.bet"),
-          icon: 'lobby-bet',
+          icon: recordImg,
           attribute: 'pledgeCode',
           show: true,
         },
-        {
-          name:  t("sideList.record"),
-          icon: 'lobby-record',
-          attribute: 'TransactionFlow',
-          show: true,
-        },
+
 
         {
           name:  t("sideList.passchange"),
-          icon: 'lobby-pass',
+          icon: changePassImg,
           attribute: 'changePassword',
           show: true,
         },
+        //  {
+        //   name:  t("sideList.record"),
+        //   icon: ruleImg,
+        //   attribute: 'TransactionFlow',
+        //   show: true,
+        // },
         {
           name:  t("sideList.withdraw"),
-          icon: 'side-popup-withdraw-apply',
+          icon: withdrawImg,
           attribute: 'withdraw-apply',
           show: true,
         },
         {
           name:  t("sideList.rule"),
-          icon: 'menu-navbar-rule',
+          icon: ruleImg,
           attribute: 'game-rule',
           show: true,
         },
         {
           name:  t("sideList.service"),
-          icon: 'lobby-services',
+          icon: serviceImg,
           attribute: 'customerService',
           show: true,
         },
@@ -119,12 +138,13 @@ const _showModal = ref(false),
         },
         {
           name:  t("sideList.out"),
-          icon: 'lobby-loginout',
+          icon: logoutImg,
           attribute: 'loginout',
           show: true,
         },
       ]),
       _vWithdrawApply = ref(null),
+      _passWordModel = ref(null),
       _vChangeLang = ref(null),
       _vGameRule = ref(null)
 ;
@@ -159,18 +179,26 @@ function _clickIcon(item) {
     })
 
   } else if (item.attribute == 'changePassword') {
-    uni.navigateTo({
-      url: '/views/SideContent/ChangePassword'
-    })
+    // uni.navigateTo({
+    //   url: '/views/SideContent/ChangePassword'
+    // })
+    _passWordModel.value.showChange();
+    return _closeModal();
 
   } else if (item.attribute == 'pledgeCode') {
+    // uni.navigateTo({
+    //   url: '/views/SideContent/pledgeCode'
+    // })
     uni.navigateTo({
-      url: '/views/SideContent/pledgeCode'
+      url: '/views/Record/Index'
     })
 
   } else if (item.attribute == 'TransactionFlow') {
+    // uni.navigateTo({
+    //   url: '/views/SideContent/TransactionFlow'
+    // })
     uni.navigateTo({
-      url: '/views/SideContent/TransactionFlow'
+      url: '/views/Record/Index'
     })
 
   } else if (item.attribute == 'loginout') {
@@ -198,9 +226,9 @@ defineExpose({
   showChange: () => {
     _showModal.value = true;
     userStore.agentType !== 'cashAgent' && (_listData.value.find(f=> f.attribute === 'withdraw-apply').show = false)
-    systemStore.onlineServicesUrl
-      ? (_listData.value.find(f=> f.attribute === 'customerService').show = true)
-      : (_listData.value.find(f=> f.attribute === 'customerService').show = false)
+    // systemStore.onlineServicesUrl
+    //   ? (_listData.value.find(f=> f.attribute === 'customerService').show = true)
+    //   : (_listData.value.find(f=> f.attribute === 'customerService').show = false)
   }
 })
 

@@ -6,9 +6,14 @@
 }
 
 .sd_model {
-  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-withdraw-apply.png'));
+    border-radius: 18rpx;
+  box-shadow: 0 14rpx 40rpx rgba(0,0,0,.35);
+    background: #364149; 
+  // .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-withdraw-apply.png'));
   width:80%;
-  position:fixed; top:300rpx; left:10%;
+  position:fixed; top:300rpx; 
+   transform: translateX(-50%);
+     left: 50%;
   z-index:210;
   // transform:translateX(100%);
   // animation:_modelShow .2s forwards ease-in-out;
@@ -129,14 +134,15 @@
     width:100%; margin:10px 0 0 0;
     .flex(inline-flex, center);
   }
-    .wa_fo_ac_button {
-      background:@bg-gradient01;
+  .reset_btn{
+      background:#4b617b;
       margin:0 40rpx;
       .box-sizing(); padding:12rpx 40rpx;
-      border-color:@border-color-red-shallow;
-      border-radius:40rpx;
-
-      &:hover {
-        background:@bg-gradient01;
-      }
+      border-radius:10rpx;
+  }
+    .wa_fo_ac_button {
+      background:#1ea7dd;
+      margin:0 40rpx;
+      .box-sizing(); padding:12rpx 40rpx;
+      border-radius:10rpx;
     }

@@ -1,61 +1,133 @@
 .sdt_model {
-  background:#0e2036;
-  margin:0 auto 20rpx auto;
-  .flex(inline-flex, center); flex-shrink:0;
-  position:relative;
+  // width:586rpx;
+  width: 85%;
+  // margin:0 auto 24rpx auto;
+  .flex(flex, center);
+  flex-direction:column;
+  margin-left: 10rpx;
+ 
 }
 
 .sdt_switch {
-  .flex(flex);
+  width: 100%;
+  height: 68rpx;
+  position: relative;
 
-  &:before {
-    content:'';
-    background:#0e2036;
-    width:200rpx; height:58rpx;
-    position:absolute; top:0rpx; right:-52rpx;
-    clip-path:path('M 32,0 C 18,0 18,32 0,32 L 32,32 Z');
-    transform:rotate(-180deg);
-  }
+}
 
-  &:after {
-    content:'';
-    background:#0e2036;
-    width:200rpx; height:58rpx;
-    position:absolute; top:0; left:-190rpx;
-    clip-path:path('M 0,0 C 18,0 18,32 32,32 L 0, 32 Z');
-    transform:rotate(-180deg);
+
+.sdt_sw_track {
+  width:100%;
+  height:100%;
+  position:relative;
+  .flex(flex, space-between, stretch);
+  z-index:30;
+}
+.sdt_switch_bg {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:10;
+  pointer-events:none;
+  display:block;
+}
+.sdt_sw_view {
+  flex:1;
+  height:100%;
+  .flex(flex, center, center);
+  flex-direction:column;
+  .pointer();
+  position:relative;
+  z-index:40;
+  text-align:center;
+  color:#6f7175;
+  .box-sizing();
+
+  &._bright {
+    //color:#fff4d3;
+    // color:#fff;
+    color:@color-theme;
   }
 }
-  .sdt_sw_view {
-    width:160rpx;
-    .box-sizing(); padding:10rpx 20rpx;
-    .flex(flex, center, center); flex-direction:column;
-    .pointer();
-    position:relative;
-    z-index:20;
+.sdt_sw_vi_en {
+  font-size: 14rpx;
 
-    &:nth-child(1) {
-    }
-    &:nth-child(2) {
-      margin-bottom:0;
-    }
+  font-weight:700;
+  text-transform:uppercase;
+   margin-top:2rpx;
+}
 
-    &._bright {
-      .sdt_sw_vi_name {
-        color:@color-normal;
-      }
-    }
-  }
-    .sdt_sw_vi_name {
-      font-size:@font-14; color:@color-theme;
-      position:relative;
-      z-index:10;
-    }
-  .sdt_sw_bright {
-    .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/desk-type-switch-bright.png'));
-    width:calc(160rpx + 100rpx); height:58rpx;
-    position:absolute; top:0; left:0;
-    transform:rotate(180deg);
-    .ani-normal(left);
-    z-index:10;
-  }
+.sdt_sw_vi_cn {
+  font-size: 18rpx;
+  font-weight:600;
+}
+
+.sdt_sw_bright {
+  width: calc(120% / 3);
+  height: 68rpx;
+  position: absolute;
+  top: 0;
+  /* left is now controlled from :style */
+  z-index: 20;
+  pointer-events: none;
+  /* animate position instead of transform */
+  transition: left .25s ease;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center top;
+}
+
+/* first tab active */
+.sdt_sw_bright--first {
+  .bg-img(url(@/assets/lobby/desktype1.png));
+}
+
+/* second & third tab active */
+.sdt_sw_bright--other {
+  .bg-img(url(@/assets/lobby/desktype.png));
+}
+
+.sdt_switch_extra {
+    /* 1. Background Color */
+    background-color: #292d38;
+    /* 2. Enable Flex Layout */
+    display: flex;
+    /* 3. Align items to the RIGHT (flex-end) */
+    justify-content: flex-end;
+    /* 4. Vertically center the items */
+    align-items: center;
+    /* 5. Set height and text color */
+    height: 80rpx; /* Use rpx for responsive sizing */
+    color: #909293;
+     padding: 0 46rpx;
+    width: 100%;
+    border-top-right-radius: 30rpx;
+}
+
+.ui-action-item {
+    /* Each item is a flex container for the icon and text */
+    display: flex;
+    align-items: center;
+    /* Space between items */
+    margin-left: 30rpx; 
+}
+
+.item-icon {
+    /* Style for the icon text */
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 8rpx;
+    font-weight: bold;
+}
+
+.item-text {
+    font-size: 24rpx;
+}
+
+.arrow {
+    /* Style for the drop-down arrow */
+    font-size: 20rpx;
+    margin-left: 5rpx;
+}

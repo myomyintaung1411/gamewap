@@ -36,3 +36,23 @@ export function req_userWithdrawal(withdrawType, withdrawalPassword, userName, a
 
   return request('/user/withdrawal', data);
 }
+
+/**
+ * 修改提现密码
+ */
+export function req_userUpdateWithdrawalPassword(password, withdrawalPassword, nonce, timeStamp, sign) {
+  const data = {
+    method: 'post',
+    data: {
+      password: password,
+      withdrawalPassword: withdrawalPassword,
+      nonce: nonce,
+      timeStamp: timeStamp,
+      sign: sign,
+    },
+    queryUrl: [
+    ],
+  }
+
+  return request('/user/updateWithdrawalPassword', data);
+}

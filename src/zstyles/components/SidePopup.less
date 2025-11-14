@@ -13,13 +13,16 @@
 }
 
 .popup-show-right {
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
   position: fixed;
   top: 0;
   right: 0;
-  width: 50%;
+  width: 60%;
   height: 100%;
   z-index: 210;
-  background: linear-gradient(to right, #1c1a20, 60%, #60636b);
+  background-color: #305674;
+ // background: linear-gradient(to right, #1c1a20, 60%, #60636b);
   // background-color: rgb(18, 17, 17); /* 半透明遮罩层 */
   /* background-color: rgba(0, 0, 0, 0.5);  */
   transform:translateX(100%);
@@ -45,13 +48,29 @@
 }
 .popup-style{
   display: flex;
-  margin: 50rpx 0;
+  align-items: center;
+ margin: 50rpx 0;
+ justify-content: space-between;
+}
+.left_sec{
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
 }
 .popup-icon{
-  margin: 0 30rpx;
+  //margin: 0 30rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+.right-icon{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 30rpx;
 }
 .popup-text{
   padding-top: 6rpx;
+  margin-left: 20rpx;
+  font-size: 28rpx;
 }
 .popup-bottom{
   width: 50%;

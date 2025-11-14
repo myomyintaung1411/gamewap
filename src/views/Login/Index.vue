@@ -1,139 +1,127 @@
 <template>
-  <view class="login-page" :style="loginBgStyle">
-    <template v-if="_showPage">
-      <view class="login-page__content">
-        <view class="login-card">
-          <view class="login-page__brand">
-            <image class="login-page__logo" :src="logoImg" mode="widthFix" />
-            <image
-              class="login-page__lang"
-              @click="_bindChangeLang"
-              :src="lang == 'zh' ? zhImg : enImg"
-              mode="widthFix"
+<view class="page-box li_page">
+  <template v-if="_showPage">
+    <view class="login-content">
+      <image class="lang-switch" @tap="_bindChangeLang" :src="lang === 'zh' ? zhImg : enImg" mode="aspectFit" />
+      <view class="li_form">
+        <view class="li_form__fields">
+          <view class="li_line">
+            <image class="li_li_icon" :src="IconUser" mode="aspectFit" />
+            <input
+              type="number"
+              maxlength="8"
+              inputmode="numeric"
+              @input="onInputName"
+              minlength="4"
+              class="li_li_input login"
+              @keyup.enter="_bindLogin(false)"
+              @confirm="_bindLogin(false)"
+              :placeholder='t("login.account")'
+              v-model="_form.name"
+              :disabled="_submitLoading"
             />
           </view>
 
-          <form class="login-form"  @click.prevent>
-            <view class="login-field">
-              <image class="login-field__icon" :src="userIcon" mode="aspectFit" />
-              <input
-                type="number"
-                maxlength="8"
-                inputmode="numeric"
-                class="login-field__input login-input"
-                @input="onInputName"
-                minlength="4"
-                @keyup.enter="_bindLogin(false)"
-                @confirm="_bindLogin(false)"
-                :placeholder='t("login.account")'
-                v-model="_form.name"
-                :disabled="_submitLoading"
-              />
-            </view>
+          <view class="li_line">
+            <image class="li_li_icon" :src="IconLock" mode="aspectFit" />
+            <input
+              class="li_li_input login"
+              @keyup.enter="_bindLogin(false)"
+              @confirm="_bindLogin(false)"
+              :placeholder='t("login.password")'
+              :password="_isPassword"
+              v-model="_form.pass"
+              :disabled="_submitLoading"
+              autocomplete="off"
+            />
+            <image
+              :src="_isPassword ? userStore.getImageBase + 'bgs/ycmm.png' : userStore.getImageBase + 'bgs/zxmm.png'"
+              v-if="_form.pass.length > 0"
+              @click="_togglePassword"
+              class="li_img"
+            />
+          </view>
 
-            <view class="login-field">
-              <image class="login-field__icon" :src="lockIcon" mode="aspectFit" />
-              <input
-                class="login-field__input login-input"
-                @keyup.enter="_bindLogin(false)"
-                @confirm="_bindLogin(false)"
-                :placeholder='t("login.password")'
-                :password="_isPassword"
-                v-model="_form.pass"
-                :disabled="_submitLoading"
-                autocomplete="off"
-              />
-              <image
-                v-if="_form.pass.length > 0"
-                class="login-field__toggle"
-                :src="_isPassword ? userStore.getImageBase + 'bgs/ycmm.png' : userStore.getImageBase + 'bgs/zxmm.png'"
-                @click="_togglePassword"
-              />
-            </view>
-
-            <!-- <view class="login-field">
-              <image class="login-field__icon" :src="authIcon" mode="aspectFit" />
-              <input
-                class="login-field__input login-input"
-                placeholder="请输入验证码"
-                v-model="_form.verifyCode"
-                :disabled="_submitLoading"
-              />
-            </view> -->
-
-            <view class="login-checkbox-row">
-              <view class="login-checkbox" @tap="_clickRemember">
-                <checkbox class="login-checkbox__input" :checked="_isRemember" multiple />
-                <text class="login-checkbox__text">{{ t("login.remember") }}</text>
-              </view>
-              <view class="login-checkbox" @tap="_bindReadRuleAgr">
-                <checkbox class="login-checkbox__input" :checked="_checkList" multiple />
-                <text class="login-checkbox__text" @tap.stop="_clickPopUp">{{ t("login.aggrement") }}</text>
-              </view>
-            </view>
-
-            <!-- <view class="login-network">
-              <view class="login-network__list">
-                <view
-                  v-for="item in systemStore.netWorkList"
-                  :key="item.ident"
-                  class="login-network__item"
-                  :class="[
-                    `_status-${item.status || 'smooth'}`,
-                    (!_autoNetWork && item.ident === systemStore.netWorkEd) && '_active'
-                  ]"
-                  :data-value="item.ident"
-                  @tap="_bindNetWork"
-                >
-                  <view class="login-network__dot"></view>
-                  <view class="login-network__name">{{ item.name }}</view>
-                  <view class="login-network__status">({{ item.status === 'congestion' ? '拥挤' : '流畅' }})</view>
-                </view>
-
-                <view
-                  class="login-network__item"
-                  :class="[_autoNetWork && '_active']"
-                  data-value="autoNetWork"
-                  @tap="_bindNetWork"
-                >
-                  <view class="login-network__dot"></view>
-                  <view class="login-network__name">自动</view>
-                  <view class="login-network__status"></view>
-                </view>
-              </view>
-              <view v-if="systemStore.initDomainIng" class="login-network__loading">加载线路中...</view>
-            </view> -->
-
-            <view class="login-actions">
-              <button
-                class="login-button login-button--gold"
-                form-type="submit"
-                @tap="_bindLogin(false)"
-              >
-                <text class="login-button__label">{{ t("login.login") }}</text>
-              </button>
-              <button class="login-button login-button--silver" @tap="_bindReset">
-                <text class="login-button__label">{{ t("login.reset") }}</text>
-              </button>
-              <button
-                v-if="!isSpecialAgent"
-                class="login-button login-button--trial"
-                @tap="_bindTryPlay"
-              >
-                <text class="login-button__label">{{ t("login.try") }}</text>
-              </button>
-            </view>
-          </form>
-
-          <RulesAgreements ref="_vRulesAgreements" />
+          <!-- <view class="li_line">
+            <image class="li_li_icon" :src="IconAuth" mode="aspectFit" />
+            <input
+              class="li_li_input login"
+              @keyup.enter="_bindLogin(false)"
+              @confirm="_bindLogin(false)"
+              :placeholder="verifyPlaceholder"
+              v-model="_form.verifyCode"
+              :disabled="_submitLoading"
+            />
+          </view> -->
         </view>
-      </view>
-    </template>
 
-    <PageBaseImport />
-    <TryItPlay ref="_vTryItPlay" />
-    <ChangeLang ref="_changeLang" />
-  </view>
+        <view class="li_netword">
+          <view class="li_netword__item">
+            <checkbox class="li_checkbox" @click="_clickRemember" :checked="_isRemember" multiple></checkbox>
+            <text class="li_span">{{ t("login.remember") }}</text>
+          </view>
+          <view class="li_netword__item">
+            <checkbox class="li_checkbox" @click="_bindReadRuleAgr" :checked="_checkList" multiple></checkbox>
+            <text class="li_span" @click="_clickPopUp">{{ t("login.aggrement") }}</text>
+          </view>
+        </view>
+
+        <!-- <view class="li_netword_url">
+          <template v-for="item in systemStore.netWorkList" :key="item.ident">
+            <view
+              :class="['li_ne_view', `_status-${item.status}`, !_autoNetWork && item.ident === systemStore.netWorkEd && '_bright']"
+              :data-value="item.ident"
+              @click="_bindNetWork"
+            >
+              <view class="li_ne_vi_point"></view>
+              <view class="li_ne_vi_name">{{ item.name }}</view>
+              <view class="li_ne_vi_status">({{ ({ smooth: '流畅', congestion: '拥挤' })[item.status] || '流畅' }})</view>
+            </view>
+          </template>
+          <view
+            :class="['li_ne_view', `_status-${''}`, _autoNetWork && '_bright']"
+            :data-value="'autoNetWork'"
+            @click="_bindNetWork"
+          >
+            <view class="li_ne_vi_point"></view>
+            <view class="li_ne_vi_name">自动</view>
+            <view class="li_ne_vi_status"></view>
+          </view>
+
+          <template v-if="systemStore.initDomainIng">
+            <view :class="['li_ne_view', '_bright']" style="width: 100%;">
+              <view class="li_ne_vi_point"></view>
+              <view class="li_ne_vi_name">加载线路中</view>
+            </view>
+          </template>
+        </view> -->
+
+
+
+      </view>
+      <view class="li_action">
+          <button class="li_ac_button li_ac_button--gold" @tap="_bindLogin(false)">
+            <span class="li_ac_bu_fill">{{ t("login.login") }}</span>
+          </button>
+        </view>
+        <view class="li_action">
+          <button class="li_ac_button li_ac_button--silver" @tap="_bindReset">
+            <span class="li_ac_bu_fill">{{ t("login.reset") }}</span>
+          </button>
+        </view>
+        <view v-if="!isSpecialAgent" class="li_action">
+          <button class="li_ac_button li_ac_button--outline" @tap="_bindTryPlay">
+            <span class="li_ac_bu_fill">{{ t("login.try") }}</span>
+          </button>
+        </view>
+    </view>
+  </template>
+        <RulesAgreements ref="_vRulesAgreements" />
+
+  <PageBaseImport />
+  <TryItPlay ref="_vTryItPlay" />
+  <ChangeLang ref="_changeLang" />
+</view>
 </template>
 <script setup name='Login'>
 import { ref, computed} from 'vue';
@@ -143,11 +131,9 @@ import { isSpecialAgent } from '../../utils/AgentCheck';
 // import Img04 from '@front/assets/imgs/bgs/zxmm.png';
 import zhImg from '@front/assets/cn.png';
 import enImg from '@front/assets/us.png';
-import loginBg from '@front/assets/login/loginBg.png';
-import logoImg from '@front/assets/login/logo.png';
-import userIcon from '@front/assets/login/user.png';
-import lockIcon from '@front/assets/login/lock.png';
-import authIcon from '@front/assets/login/auth.png';
+import IconUser from '@front/assets/login/user.png';
+import IconLock from '@front/assets/login/lock.png';
+import IconAuth from '@front/assets/login/auth.png';
 import PageBaseImport from '@front/components/PageBaseImport.vue';
 import TryItPlay from '@front/components/TryItPlay.vue';
 import ChangeLang from '@front/components/ChangeLang.vue';
@@ -169,14 +155,14 @@ import { useI18n } from "vue-i18n";
 const { t,locale } = useI18n();
 	locale.value = uni.getStorageSync('l') || 'zh';
   const lang = computed(() => locale.value);
+const verifyPlaceholder = computed(() => {
+  const text = t('login.verifyCode');
+  return text && text !== 'login.verifyCode' ? text : '请输入验证码';
+});
 
 const userStore = useUserStore(),
       systemStore = useSystemStore()
 ;
-
-const loginBgStyle = computed(() => ({
-  backgroundImage: `url(${loginBg})`,
-}));
 
 let _uuid = `${getLoginUUID()}`,
     _isCheckEdNetStatus = false
@@ -455,15 +441,15 @@ onLoad((event)=> {
 
   // _bindRefreshVerifyCode();
 
-  if (!systemStore.isDomainLoadEd) {
-    systemStore.autoInitDomainConfig().then(()=> {
-      // systemStore.netWorkEd && _bindRefreshVerifyCode(true);
-     _checkNetListStatus();
-    });
-  } else {
-    // _bindRefreshVerifyCode(true);
-    _checkNetListStatus();
-  }
+  // if (!systemStore.isDomainLoadEd) {
+  //   systemStore.autoInitDomainConfig().then(()=> {
+  //     // systemStore.netWorkEd && _bindRefreshVerifyCode(true);
+  //    _checkNetListStatus();
+  //   });
+  // } else {
+  //   // _bindRefreshVerifyCode(true);
+  //   _checkNetListStatus();
+  // }
 
   let _winParams = false;
   // #ifdef APP-PLUS

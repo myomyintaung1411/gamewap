@@ -1,79 +1,160 @@
+// .ca_model {
+//   width:100%;
+//   .flex(inline-flex, false, center); flex-shrink:0;
+// }
+
+// .ca_opera {
+//   width:50rpx; height:50rpx;
+//   .flex(inline-flex, center, center); flex-shrink:0;
+// }
+//   .ca_op_icon {
+//     width:24rpx; height:24rpx;
+//   }
+
+// .ca_view {
+//   width:98rpx; height:98rpx; margin:0 10rpx 0 0;
+//   .flex(inline-flex, center, center); flex-shrink:0;
+//   position:relative;
+
+//   &._bright {
+//     .ca_vi_fill {
+//       // width:100%; height:100%;
+//       width:74%; height:74%;
+//     }
+//     .ca_vi_bright {
+//       opacity:1;
+//     }
+//   }
+//   &._normal {
+//     .ca_vi_fill {
+//       width:74%; height:74%;
+//     }
+//   }
+// }
+//   .ca_vi_fill {
+//     width:100%; height:100%;
+//     .ani-normal(all);
+//   }
+//   .ca_vi_bright {
+//     width:calc(100% + 12px); height:calc(100% + 6px);
+//     position:absolute; top:0px; left:-6px;
+//     opacity:0;
+//   }
+
+// .ca_list {
+//   height:98rpx;
+//   /* .flex(inline-flex, space-around); */ flex:1;
+//   /* overflow-x:scroll;
+//   .hidescroll(); */
+// }
+//   .ca_li_view {
+//     width:98rpx; height:98rpx; margin:0 10rpx 0 0;
+//     .flex(inline-flex, center, center); /* flex-shrink:0; */
+//     position:relative;
+
+//     &._bright {
+//       .ca_li_vi_fill {
+//         // width:100%; height:100%;
+//         width:74%; height:74%;
+//       }
+//       .ca_li_vi_bright {
+//         opacity:1;
+//       }
+//     }
+//     &._normal {
+//       .ca_li_vi_fill {
+//         width:74%; height:74%;
+//       }
+//     }
+//   }
+//     .ca_li_vi_fill {
+//       width:100%; height:100%;
+//       .ani-normal(all);
+//     }
+//     .ca_li_vi_bright {
+//       width:calc(100% + 12px); height:calc(100% + 6px);
+//       position:absolute; top:0px; left:-6px;
+//       opacity:0;
+//       z-index:-1;
+//     }
+
+
 .ca_model {
-  width:100%;
-  .flex(inline-flex, false, center); flex-shrink:0;
+  width: 100%;
+  .flex(flex, false, center);  // row, center vertically
+  flex-shrink: 0;
 }
 
+/* left/right arrows */
 .ca_opera {
-  width:50rpx; height:50rpx;
-  .flex(inline-flex, center, center); flex-shrink:0;
+  width: 50rpx;
+  height: 50rpx;
+  .flex(flex, center, center);
+  flex-shrink: 0;
 }
-  .ca_op_icon {
-    width:24rpx; height:24rpx;
-  }
-
-.ca_view {
-  width:98rpx; height:98rpx; margin:0 10rpx 0 0;
-  .flex(inline-flex, center, center); flex-shrink:0;
-  position:relative;
-
-  &._bright {
-    .ca_vi_fill {
-      // width:100%; height:100%;
-      width:74%; height:74%;
-    }
-    .ca_vi_bright {
-      opacity:1;
-    }
-  }
-  &._normal {
-    .ca_vi_fill {
-      width:74%; height:74%;
-    }
-  }
+.ca_op_icon {
+  width: 14rpx;
+  height: 24rpx;
 }
-  .ca_vi_fill {
-    width:100%; height:100%;
-    .ani-normal(all);
-  }
-  .ca_vi_bright {
-    width:calc(100% + 12px); height:calc(100% + 6px);
-    position:absolute; top:0px; left:-6px;
-    opacity:0;
-  }
 
+/* left/right side buttons (gears/B badge) */
+.ca_side_btn {
+  width: 60rpx;
+  height: 60rpx;
+  .flex(flex, center, center);
+  flex-shrink: 0;
+}
+.ca_side_icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+/* swiper that holds chips */
 .ca_list {
-  height:98rpx;
-  /* .flex(inline-flex, space-around); */ flex:1;
-  /* overflow-x:scroll;
-  .hidescroll(); */
+  height: 98rpx;
+  flex: 1;
+  overflow: visible;        /* important so glow can extend outside */
 }
-  .ca_li_view {
-    width:98rpx; height:98rpx; margin:0 10rpx 0 0;
-    .flex(inline-flex, center, center); /* flex-shrink:0; */
-    position:relative;
 
-    &._bright {
-      .ca_li_vi_fill {
-        // width:100%; height:100%;
-        width:74%; height:74%;
-      }
-      .ca_li_vi_bright {
-        opacity:1;
-      }
-    }
-    &._normal {
-      .ca_li_vi_fill {
-        width:74%; height:74%;
-      }
-    }
-  }
-    .ca_li_vi_fill {
-      width:100%; height:100%;
-      .ani-normal(all);
-    }
-    .ca_li_vi_bright {
-      width:calc(100% + 12px); height:calc(100% + 6px);
-      position:absolute; top:0px; left:-6px;
-      opacity:0;
-      z-index:-1;
-    }
+/* single chip container */
+.ca_chip {
+  width: 98rpx;
+  height: 98rpx;
+  margin: 0 10rpx;
+  .flex(flex, center, center);
+  position: relative;
+}
+
+.ca_chip--empty {
+  opacity: 0;
+}
+
+/* chip SVG */
+.ca_chip_fill {
+  width: 74%;
+  height: 74%;
+  position: relative;
+  z-index: 1;
+  .ani-normal(all);
+}
+
+/* glow image under active chip */
+.ca_chip_glow {
+  position: absolute;
+  left: 50%;
+  bottom: -8rpx;          /* adjust to match the design ring position */
+  transform: translateX(-50%);
+  width: 140%;            /* a bit wider than chip */
+  opacity: 0;
+  z-index: 0;             /* just under chip */
+  pointer-events: none;
+}
+
+/* when selected */
+.ca_chip._bright .ca_chip_fill {
+  width: 74%;
+  height: 74%;
+}
+.ca_chip._bright .ca_chip_glow {
+  opacity: 1;
+}

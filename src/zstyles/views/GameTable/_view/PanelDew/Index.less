@@ -1,9 +1,14 @@
 .pd_model {
-  width:100%; height:calc((24px * 6) + 2rpx);
+  width:calc(100% - 10rpx); height:calc((24px * 6) + 2rpx);
   .flex(flex);
   .box-sizing();
-  border-top:1rpx solid @bg-dew-line;
+  //border-top:1rpx solid @bg-dew-line;
+    border-top: none;              /* avoids a hard square edge at top */
+  background: #fff;              /* your grid background */
+
   position:relative;
+  margin :0 auto;
+
 
   &._isPhoneSmall {
     height:calc((16px * 6) + 2rpx);

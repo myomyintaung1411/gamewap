@@ -149,7 +149,7 @@
             {{t("withdraw.confirm_w")}}
           </TheButton>
           <TheButton
-            class='wa_fo_ac_button'
+            class=' reset_btn'
             :taps='_bindReset'
           >
              {{t("withdraw.reset")}}

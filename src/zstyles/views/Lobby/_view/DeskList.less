@@ -1,17 +1,26 @@
 .dl_model {
-  width:100%;
+ width:calc(100% - 20rpx); 
   .flex(flex); flex-wrap:wrap; align-content:start;
   flex:1;
   overflow-y:scroll;
+   background-color: #1c2128;
+ padding:20rpx 0;
+ margin: 0 auto;
+ border-top-right-radius: 20rpx;
 }
 
 .dl_view {
-  .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-view.png'));
+  background-color: #03557e;
+  
+   .bg-img(url('@/assets/lobby/bgdesk.png'));
   width:calc(100% - 20px); margin:0 10px 16rpx 10px;
-  .box-sizing(); padding:4px 4px;
-  border-radius:10px;
+  .box-sizing(); 
+  padding:0px 4px 2px;
+  border-radius:5px;
+  // border: 1px solid #088cb7;
+  position: relative;
   .pointer();
-
+ 
   &:nth-child(2n+2) {
     //margin-right:0;
   }
@@ -21,23 +30,43 @@
     .flex(flex, false, center);
   }
     .dl_vi_ti_name {
-      width:160rpx; /* font-size:@font-16; */font-size:@font-12; font-weight:@font-bold; color:@color-theme; text-align:center;
+      // background-color: #088cb7;
+      width:160rpx; /* font-size:@font-16; */
+      font-size:@font-10; 
+      font-weight:@font-bold; 
+      // color:@color-theme; 
+      color: #fff;
+      text-align:center;
     }
     .dl_vi_ti_textarea {
-      .flex(inline-flex, center, center); flex:1;
+      padding-left: 10rpx;
+      //  background-color: red;
+      flex:1;
+      display: flex;align-items: center;justify-content: space-between;
+      //.flex(inline-flex, center, center); flex:1;
     }
     .dl_vi_ti_time {
-      width:80px;
+     // width:80px;
       .flex(inline-flex, center, center);
     }
       .dl_vi_ti_ti_icon {
         margin:0 4px 0 0;
+        width: 14px; height:14px;
       }
       .dl_vi_ti_ti_ic_num {
-        height:26px; /* font-size:@font-18; */font-size:@font-12; color:@color-theme;
+        height:26px; /* font-size:@font-18; */font-size:@font-12;
         .flex(inline-flex, false, center);
         .overflow();
       }
+          /* 🔵 when > 10 */
+    .time-high {
+      color: #3acfa4;   // greenish color
+    }
+
+    /* 🔴 when ≤ 10 */
+    .time-low {
+      color: #c14d49;   // reddish color
+    }
       .dl_vi_ti_ti_ic_text {
         height:26px; font-size:@font-12; color:@color-theme;
         .flex(inline-flex, false, center);
@@ -45,13 +74,18 @@
       }
     .dl_vi_ti_info {
 	  white-space: nowrap;
-      font-size:@font-12; color:@color-theme; margin:0 10px 0 0;
+      font-size:@font-12;
+       color:#e4e2e1; 
+       margin:0 10px 0 0;
     }
     .dl_vi_ti_button {
-      .bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-join.png'));
+      .bg-img(url('@/assets/lobby/lobby_btn.png'));
+      //.bg-img(url('https://bx1buk.oss-accelerate.aliyuncs.com/h5pt/bgs/bg-desk-join.png'));
       font-size:@font-12; font-weight:@font-bold; color:@color-deep02; white-space:nowrap;
       .box-sizing(); padding:2px 7px;
       border-radius:2px;
+      width: 120rpx;
+      height: 38rpx;
     }
   .dl_vi_content {
     width:100%;
@@ -60,12 +94,13 @@
   }
     .dl_vi_co_banner {
       background:@bg-white;
-      width:80px; height:calc(16px * 6); margin:0 /* 10px */0 0 0;
+      width:92px; height:calc(16px * 8); margin:0 /* 10px */0 0 0;
       border-radius:4px;
       .overflow();
     }
     .dl_vi_co_dew {
-      /* width:calc(8px * 34); */ height:calc(16px * 6);
+      /* width:calc(8px * 34); */ 
+      height:calc(16px * 6);
       flex:1;
       .flex(flex, flex-end);
       border-radius:4px;
@@ -104,7 +139,10 @@
         }
 
 .pd_left {
-  width:calc(16px * 5); height:100%;
+  ///width:calc(16px * 5); 
+   width: 100%;
+   height:100%;
+
 }
 
 .pd_right {
@@ -137,4 +175,35 @@
 
 .pd_sixth {
   width:calc(100% - (8px * 12)); height:25%;
+}
+
+.dl-type-display{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //  background-color: red;
+  position: absolute;
+  right: 10rpx;
+  bottom: 10px;
+  width: calc(100% - 100px);
+}
+.dl-result-type{
+  display: flex;
+  align-items: center;
+  margin-left: 5rpx;
+    .all_img{
+    width: 35rpx;
+    height: 35rpx;
+  }
+    .result_img{
+    width: 25rpx;
+    height: 25rpx;
+  }
+
+  .result_txt{
+    font-size: @font-10;
+    color: #fff;
+    margin-left: 5rpx;
+  }
+
 }

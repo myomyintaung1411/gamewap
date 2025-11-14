@@ -2,7 +2,7 @@
   // .bg-img(url('@front/assets/imgs/bgs/bg-game-table-route-opera.png'));
   width:100%;
   .flex(flex, space-between); flex-shrink:0;
-  .box-sizing(); padding:50rpx 20rpx 10rpx 20rpx;
+  .box-sizing(); padding:30rpx 20rpx 10rpx 20rpx;
   position:relative;
       background-color: #18392e;
       border-top-right-radius: 20rpx;
@@ -88,29 +88,40 @@
   .ro_ac_ask {
     background:rgba(255, 255, 255, .15);
     margin:0 14rpx 0 0;
-    .box-sizing(); padding:6rpx 20rpx 8rpx 20rpx;
+    .box-sizing(); 
+    padding: 10rpx 10rpx;
+    //padding:6rpx 20rpx 8rpx 20rpx;
     border-radius:16rpx;
+    display: flex;
+    align-items: center;
   }
     .ro_ac_as_circle {
-      margin:0 0 8rpx 0;
+      margin:0 0 0rpx 0;
       .flex(flex);
     }
       .ro_ac_as_ci_view {
         width:16rpx; height:16rpx; font-size:0; margin:0 6rpx 0 0;
       }
     .ro_ac_as_name {
-      font-size:@font-12; color:@color-deep02; line-height:1;
+      padding: 0 8rpx;
+      font-size:@font-10; color:#cfcaca; line-height:1;
     }
   .ro_ac_view {
     background:rgba(255, 255, 255, .15);
     line-height:0;
-    .flex(inline-flex, false, center); flex-direction:column;
-    .box-sizing(); padding:2rpx 20rpx 8rpx 20rpx;
+    display: flex;
+    align-items: center;
+    //.flex(inline-flex, false, center);
+    //  flex-direction:column;
+    .box-sizing(); 
+    //padding:2rpx 20rpx 8rpx 20rpx;
+    padding: 8rpx 10rpx;
     border-radius:16rpx;
   }
     .ro_ac_vi_icon {
-      width:24rpx; height:24rpx; margin:0 auto 4rpx auto;
+      width:38rpx; height:28rpx; 
+     // margin:0 auto 4rpx auto;
     }
     .ro_ac_vi_name {
-      font-size:@font-12; color:@color-deep02; line-height:1;
+      font-size:@font-10; color:#cfcaca; line-height:1;
     }

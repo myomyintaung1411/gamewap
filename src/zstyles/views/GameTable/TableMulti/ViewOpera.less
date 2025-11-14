@@ -13,26 +13,31 @@
 }
 
 .vo_ask {
-  background:rgba(255, 255, 255, .6);
-  .box-sizing(); padding:6rpx 20rpx 8rpx 20rpx;
-  border-radius:16rpx;
+  background:#536a84;
+  .box-sizing(); padding:10rpx 20rpx 10rpx 20rpx;
+  border-radius:40rpx;
+  display: flex;
+  align-items: center;
 }
   .vo_as_circle {
-    width:100%; margin:0 0 8rpx 0;
+    width:100%; margin:0 0 0rpx 0;
     .flex(flex, center);
   }
     .vo_as_ci_view {
       width:16rpx; height:16rpx; font-size:0; margin:0 6rpx 0 0;
     }
   .vo_as_name {
-    width:100%; font-size:@font-12; /* color:@color-theme; */.color-deep03(1); line-height:1; text-align:center;
-    opacity:.8;
+    width:100%; font-size:@font-12; /* color:@color-theme; */ line-height:1; text-align:center;
+    color: #d8d3d3;
+    padding-right:  9rpx;
   }
 .vo_view {
-  background:rgba(255, 255, 255, .6);
+  background:#536a84;
   line-height:0;
-  .flex(inline-flex, false, center); flex-direction:column;
-  .box-sizing(); padding:2rpx 4rpx 8rpx 4rpx;
+   display: flex;
+   align-items: center;
+   padding: 10rpx 20rpx;
+  .box-sizing();
   border-radius:40rpx;
 
   &._size01 {
@@ -40,9 +45,9 @@
   }
 }
   .vo_vi_icon {
-    width:24rpx; height:24rpx; margin:0 auto 6rpx auto;
+    width:24rpx; height:24rpx; margin:0 auto 0rpx auto;
   }
   .vo_vi_name {
-    font-size:@font-12; /* color:@color-theme; */.color-deep03(1); line-height:1;
-    opacity:.8;
+    font-size:@font-12; /* color:@color-theme; */color: #d8d3d3;; line-height:1;
+    
   }
